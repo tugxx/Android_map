@@ -58,7 +58,7 @@ public class StudentActivity extends AppCompatActivity implements IProfileStuden
         btn_classlist_student = (Button) findViewById(R.id.btn_classlist_student); // class list
         btn_studentlist_student = (Button) findViewById(R.id.btn_studentlist_student); // Student list
         img_avatar_main_student = (ImageView) findViewById(R.id.img_avatar_main_student); // avatar
-        fullname_main_student = (TextView) findViewById(R.id.fullnam_main_teacher);
+        fullname_main_student = (TextView) findViewById(R.id.fullnam_main_teacher); // Full Name
         numberId_main_student = (TextView) findViewById(R.id.Number_ID_main_teacher);
         btn_about = (Button) findViewById(R.id.btn_about);
     }
