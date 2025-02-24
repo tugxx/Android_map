@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#E5E5E5">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#E5E5E5"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp">
+
+
+        <ImageView
+            android:id="@+id/imageView12"
+            android:layout_width="411dp"
+            android:layout_height="33dp"
+            android:scaleType="fitXY"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@drawable/backimagebotton"
+            tools:srcCompat="@drawable/backimagebotton" />
+
+        <Button
+            android:id="@+id/btn_information_student"
+            android:layout_width="107dp"
+            android:layout_height="98dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/information_png"
+            app:backgroundTint="#00FFFFFF"
+            app:backgroundTintMode="screen"
+            app:iconTint="#000000"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_schedule_student" />
+
+        <Button
+            android:id="@+id/btn_classlist_student"
+            android:layout_width="107dp"
+            android:layout_height="98dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/classlist_png"
+            app:backgroundTint="#00FFFFFF"
+            app:backgroundTintMode="screen"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_studentlist_student" />
+
+        <Button
+            android:id="@+id/button15"
+            android:layout_width="107dp"
+            android:layout_height="98dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="24dp"
+            android:background="@drawable/search_png"
+            app:backgroundTint="#00FFFFFF"
+            app:backgroundTintMode="screen"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_attendence_student" />
+
+        <Button
+            android:id="@+id/btn_present_student"
+            android:layout_width="107dp"
+            android:layout_height="98dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/present_jpg"
+            app:backgroundTint="#00FFFFFF"
+            app:backgroundTintMode="screen"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.095"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_information_student" />
+
+        <Button
+            android:id="@+id/btn_studentlist_student"
+            android:layout_width="107dp"
+            android:layout_height="98dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/studentlist_png"
+            app:backgroundTint="#00FFFFFF"
+            app:backgroundTintMode="screen"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView10" />
+
+        <Button
+            android:id="@+id/btn_attendence_student"
+            android:layout_width="107dp"
+            android:layout_height="98dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="24dp"
+            android:background="@drawable/attendance_png"
+            app:backgroundTint="#00FFFFFF"
+            app:backgroundTintMode="screen"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView10" />
+
+        <Button
+            android:id="@+id/btn_schedule_student"
+            android:layout_width="107dp"
+            android:layout_height="98dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/schedule_png"
+            app:backgroundTint="#00FFFFFF"
+            app:backgroundTintMode="screen"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView10"
+            tools:ignore="MissingConstraints" />
+
+        <Button
+            android:id="@+id/btn_about"
+            android:layout_width="107dp"
+            android:layout_height="98dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/about_icon"
+            app:backgroundTint="#00FFFFFF"
+
+            app:backgroundTintMode="screen"
+            app:layout_constraintStart_toEndOf="@+id/btn_present_student"
+            app:layout_constraintTop_toBottomOf="@+id/btn_classlist_student"
+            tools:ignore="DuplicateIds" />
+
+        <ImageView
+            android:id="@+id/imageView10"
+            android:layout_width="393dp"
+            android:layout_height="79dp"
+            android:layout_marginTop="20dp"
+            android:scaleType="fitXY"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView4"
+            app:srcCompat="@drawable/image_mid"
+            tools:ignore="DuplicateIds,MissingConstraints" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="176dp"
+            android:fontFamily="@font/poppins_medium"
+            android:text="STUDENT"
+            android:textColor="#000000"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="DuplicateIds,MissingConstraints" />
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:fontFamily="@font/poppins"
+            android:text="Copyright@fhq_ute"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/imageView12"
+            app:layout_constraintHorizontal_bias="0.545"
+            app:layout_constraintStart_toStartOf="@+id/imageView12"
+            tools:ignore="DuplicateIds,MissingConstraints" />
+
+        <ImageView
+            android:id="@+id/imageView13"
+            android:layout_width="34dp"
+            android:layout_height="25dp"
+            android:layout_marginBottom="4dp"
+            app:layout_constraintBottom_toBottomOf="@+id/imageView12"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.312"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@mipmap/ic_logo"
+            tools:ignore="MissingConstraints" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/imageView5"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="13dp"
+            android:src="@drawable/home"
+            app:layout_constraintStart_toStartOf="@+id/imageView10"
+            app:layout_constraintTop_toTopOf="@+id/imageView10"
+            app:srcCompat="@drawable/persion_bg" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/imageView7"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:layout_marginStart="22dp"
+            android:layout_marginTop="12dp"
+            android:src="@drawable/messing"
+            app:layout_constraintStart_toEndOf="@+id/imageView5"
+            app:layout_constraintTop_toTopOf="@+id/imageView10"
+            app:srcCompat="@drawable/persion_bg" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/imageView11"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:layout_marginStart="22dp"
+            android:layout_marginTop="13dp"
+            android:src="@drawable/information_ic"
+            app:layout_constraintStart_toEndOf="@+id/imageView7"
+            app:layout_constraintTop_toTopOf="@+id/imageView10"
+            app:srcCompat="@drawable/persion_bg" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/imageView14"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:layout_marginStart="22dp"
+            android:layout_marginTop="12dp"
+            android:src="@drawable/setting"
+            app:layout_constraintStart_toEndOf="@+id/imageView11"
+            app:layout_constraintTop_toTopOf="@+id/imageView10"
+            app:srcCompat="@drawable/persion_bg" />
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/img_logout"
+            android:layout_width="55dp"
+            android:layout_height="55dp"
+            android:layout_marginTop="12dp"
+            android:src="@drawable/logout"
+            android:layout_marginEnd="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/imageView10"
+            app:srcCompat="@drawable/persion_bg" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="411dp"
+        android:layout_height="126dp"
+        android:scaleType="fitXY"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/image_top"
+        tools:ignore="DuplicateIds" />
+
+    <ImageView
+        android:id="@+id/imageView8"
+        android:layout_width="334dp"
+        android:layout_height="86dp"
+        android:layout_marginTop="72dp"
+        android:scaleType="fitXY"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageView6"
+        app:srcCompat="@drawable/image_mid"
+        tools:ignore="DuplicateIds" />
+
+    <ImageView
+        android:id="@+id/imageView9"
+        android:layout_width="50dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="23dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginRight="15dp"
+        android:scaleType="fitXY"
+        app:layout_constraintEnd_toEndOf="@+id/imageView8"
+        app:layout_constraintTop_toTopOf="@+id/imageView8"
+        app:srcCompat="@drawable/ic_vn"
+        tools:ignore="DuplicateIds" />
+
+    <TextView
+        android:id="@+id/fullnam_main_teacher"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="80dp"
+        android:layout_marginLeft="80dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/poppins_medium"
+        android:text="Full Name"
+        app:layout_constraintStart_toStartOf="@+id/imageView8"
+        app:layout_constraintTop_toTopOf="@+id/imageView8" />
+
+    <TextView
+        android:id="@+id/Number_ID_main_teacher"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="45dp"
+        android:fontFamily="@font/poppins"
+        android:text="Student Number"
+        app:layout_constraintStart_toStartOf="@+id/imageView8"
+        app:layout_constraintTop_toTopOf="@+id/imageView8" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/img_avatar_main_student"
+        android:layout_width="60dp"
+        android:layout_height="57dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="88dp"
+        android:src="@drawable/persion_bg"
+        app:layout_constraintStart_toStartOf="@+id/imageView8"
+        app:layout_constraintTop_toTopOf="@+id/imageView6"
+        app:srcCompat="@drawable/persion_bg"
+        tools:ignore="MissingConstraints" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+<!--StudentActivity -> setContentView-->

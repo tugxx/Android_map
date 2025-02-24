@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <TextView
+        android:id="@+id/text_name_id_student"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Bùi Thanh Phương - 18110179" />
+
+    <TextView
+        android:id="@+id/text_time_present"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="09/06/2021 01:00:00 PM"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/text_stutus_attendance"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        android:textColor="#27FF00"
+        android:text="on time" />
+</LinearLayout>
