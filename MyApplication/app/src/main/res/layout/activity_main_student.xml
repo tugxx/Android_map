@@ -278,7 +278,7 @@
         tools:ignore="DuplicateIds" />
 
     <TextView
-        android:id="@+id/fullnam_main_teacher"
+        android:id="@+id/fullname_main_student"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="80dp"
@@ -315,4 +315,4 @@
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
-<!--StudentActivity -> setContentView-->
+    <!--StudentActivity -> setContentView-->

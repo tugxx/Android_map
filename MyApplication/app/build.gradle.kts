@@ -35,7 +35,8 @@ android {
 }
 
 dependencies {
-    implementation ("com.github.yuriy-budiyev:code-scanner:2.1.0") // QR code
+    implementation("androidx.core:core:1.9.0") // For NestedScrollView
+    implementation("com.github.yuriy-budiyev:code-scanner:2.1.0") // QR code
     implementation("com.squareup.picasso:picasso:2.71828")
     implementation("de.hdodenhof:circleimageview:3.1.0")
     implementation("com.google.firebase:firebase-auth-ktx:21.0.1")

@@ -46,7 +46,9 @@ public class ProfileStudentModel extends AppCompatActivity implements IProfileSt
     @Override
     public void checkInforValidity(String ID, IProfileStudentView context) {
         String url = "http://" + ipConfigModel.getIpconfig() + "/PHP_API/inforstudent.php";
+//        System.out.println("ProfileStudentModel + checkInforValidity");
         RequestQueue requestQueue = Volley.newRequestQueue((Context) context);
+        // Take student info in table student
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -56,6 +58,7 @@ public class ProfileStudentModel extends AppCompatActivity implements IProfileSt
                     try {
                         JSONObject object = new JSONObject(response);
                         if ((object.getString("student_id").trim()).equals(ID)) {
+                            // --> Turn to ProfileStudentActivity
                             iProfileStudentView.showInforStudent(object.getString("student_id").trim(),
                                     object.getString("student_name").trim(),
                                     object.getString("student_birth").trim(),
@@ -96,8 +99,8 @@ public class ProfileStudentModel extends AppCompatActivity implements IProfileSt
             public void onResponse(String response) {
                 int checkresult = 0;
                 if (response.equals("Done")) {
-                        checkresult = 1;
-                        iProfileStudentView.updateSuccessfully(checkresult);
+                    checkresult = 1;
+                    iProfileStudentView.updateSuccessfully(checkresult);
 
                 } else {
                     try {
@@ -147,6 +150,7 @@ public class ProfileStudentModel extends AppCompatActivity implements IProfileSt
                     try {
                         JSONObject object = new JSONObject(response);
                         if ((object.getString("student_id").trim()).equals(id)) {
+                            // --> Turn to ProfileStudentActivity
                             iProfileStudentView.showInforStudentMain(object.getString("student_id").trim(),
                                     object.getString("student_name").trim(),
                                     object.getString("student_image").trim());

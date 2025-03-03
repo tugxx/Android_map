@@ -23,13 +23,14 @@ public class ProfileStudentPresenter extends AppCompatActivity implements IProfi
     }
     @Override
     public void getIDStudent(String ID, IProfileStudentView iProfileStudentView) {
+//        System.out.println("ProfileStudentPresenter + getIDStudent");
         iProfileStudentModel = new ProfileStudentModel(ID,iProfileStudentView);
-        iProfileStudentModel.checkInforValidity(ID, iProfileStudentView);
+        iProfileStudentModel.checkInforValidity(ID, iProfileStudentView); // --> Turn to ProfileStudentModel
     }
     @Override
     public void getIDMainStudent(String ID, IProfileStudentView iProfileStudentView) {
-        iProfileStudentModel = new ProfileStudentModel(ID,iProfileStudentView);
 //        System.out.println("ProfileStudentPresenter - getIDMainStudent");
+        iProfileStudentModel = new ProfileStudentModel(ID,iProfileStudentView);
         iProfileStudentModel.checkInforValidityMain(ID, iProfileStudentView); // --> Turn to ProfileStudentModel
     }
 

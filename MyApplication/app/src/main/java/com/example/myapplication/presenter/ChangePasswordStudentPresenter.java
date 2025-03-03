@@ -20,10 +20,10 @@ public class ChangePasswordStudentPresenter extends AppCompatActivity implements
         handler = new Handler(Looper.getMainLooper());
     }
 
-
     @Override
     public void checkChangePass(String id_student, String old_password, String new_password, IChangePasswordStudentView iChangePasswordStudentView) {
         iChangePasswordStudentModel = new ChangePasswordStudentModel(id_student, old_password, new_password, iChangePasswordStudentView);
+        // --> Turn to ChangePasswordStudentModel
         iChangePasswordStudentModel.Changepasswordstudent(id_student, old_password, new_password, iChangePasswordStudentView);
     }
 

@@ -45,10 +45,9 @@ public class ChangePasswordStudentModel extends AppCompatActivity implements ICh
                 int checkresult = 0;
                 if (response.equals("Done")) {
                     checkresult = 1;
-                    iChangePasswordStudentView.ChangeResult(checkresult);
-
+                    iChangePasswordStudentView.ChangeResult(checkresult); // --> Turn to ChangePasswordStudentActivity
                 } else {
-                        iChangePasswordStudentView.ChangeResult(checkresult);
+                    iChangePasswordStudentView.ChangeResult(checkresult); // --> Turn to ChangePasswordStudentActivity
                 }
             }
         }, new Response.ErrorListener() {

@@ -20,9 +20,11 @@ import android.widget.RadioButton;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.widget.NestedScrollView;
 
 import com.example.myapplication.Retrofit.APIUtils;
 import com.example.myapplication.Retrofit.DataClient;
+import com.example.myapplication.model.IPConfigModel;
 import com.example.myapplication.presenter.ProfileStudentPresenter;
 import com.example.myapplication.presenter.IProfileStudentPresenter;
 import com.example.myapplication.view.IProfileStudentView;
@@ -55,23 +57,26 @@ public class ProfileStudentActivity extends AppCompatActivity implements IProfil
     private IProfileStudentPresenter profileStudentPresenter = new ProfileStudentPresenter(this);
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) { // Student-main (information)
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+//        requestWindowFeature(Window.FEATURE_NO_TITLE);
+//        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_profile_student);
+        NestedScrollView scrollView = findViewById(R.id.scrollView);
+        scrollView.smoothScrollTo(0, 0);
         mapping();
 
         Intent intent_student = getIntent();
         id_student = intent_student.getStringExtra("ID_STUDENT");
-        //InitSTUDENT
-        profileStudentPresenter.getIDStudent(id_student, this);
-        //Set Listener
-        img_btn_home.setOnClickListener(this);
-        img_btn_back.setOnClickListener(this);
+//        System.out.println("ProfileStudentActivity + onCreate");
+        // Auto open
+        profileStudentPresenter.getIDStudent(id_student, this); // --> Turn to ProfileStudentPresenter
 
-        btn_update_student.setOnClickListener(this);
-        btn_changepass_student.setOnClickListener(this);
+        //Set Listener --> Go to onClick
+        img_btn_home.setOnClickListener(this); // Home
+        img_btn_back.setOnClickListener(this); // Back
+        btn_update_student.setOnClickListener(this); // Update (not Done)
+        btn_changepass_student.setOnClickListener(this); // Change Password
 
         btn_choose_image.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,34 +88,37 @@ public class ProfileStudentActivity extends AppCompatActivity implements IProfil
         });
     }
 
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-
-        super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == SELECT_PICTURE && resultCode == RESULT_OK && data !=null)
-        {
-            Uri uri = data.getData();
-            realpath = getRealPathFromURI(uri);
-                try {
-                    InputStream inputStream = getContentResolver().openInputStream(uri);
-                    Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
-                    img_avatar_student.setImageBitmap(bitmap);
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                }
-        }
+    public void mapping() {
+        edt_fullname_student = (EditText) findViewById(R.id.edt_fullname_student); // Full Name
+        edt_email_student = (EditText) findViewById(R.id.edt_email_student); // Email
+        edt_phone_student = (EditText) findViewById(R.id.edt_phone_student); // Phone
+        edt_class_student = (EditText) findViewById(R.id.edt_major_student); // Class
+        edt_school_student = (EditText) findViewById(R.id.edt_school_student); // School
+        edt_birthday_student = (EditText) findViewById(R.id.edt_birthday_student); // Date of Birth
+        edt_ID_student = (EditText) findViewById(R.id.edt_ID_student); // Student ID
+        btn_update_student = (Button) findViewById(R.id.btn_update_student); // Update
+        img_btn_home = (ImageView) findViewById(R.id.img_btn_home_student); // Home
+        img_btn_back = (ImageView) findViewById(R.id.img_btn_back_student); // Back <
+        img_avatar_student = (CircleImageView) findViewById(R.id.img_avatar_student); // Avatar
+        btn_changepass_student = (Button) findViewById(R.id.btn_changepass_student); // Change Password
+        btn_choose_image = (Button) findViewById(R.id.btn_choose_image_student); // Choose
+        rb_male_student = (RadioButton) findViewById(R.id.rb_male_student); // Male
+        rb_female_student = (RadioButton) findViewById(R.id.rb_female_student); // Female
     }
 
     @Override
     public void onClick(View v) {
-        if (v.getId() == R.id.img_btn_back_teacher) {
-            Intent student1 = new Intent(this, StudentActivity.class);
-            student1.putExtra("ID_STUDENT", id_student);  // Truyền ID_STUDENT
+        if (v.getId() == R.id.img_btn_back_student) { // Back < (Done)
+            Intent student1 = new Intent(this, StudentActivity.class); // --> Turn to StudentActivity
+            student1.putExtra("ID_STUDENT", id_student);
             startActivity(student1);
-        } else if (v.getId() == R.id.btn_update_teacher) {
+
+        } else if (v.getId() == R.id.btn_update_student) { // Update (Not Done)
             enable();
-            btn_changepass_student.setText("Save");
+//            btn_changepass_student.setText("Save");
             btn_choose_image.setVisibility(View.VISIBLE);
-        } else if (v.getId() == R.id.btn_changepass_teacher) {
+
+        } else if (v.getId() == R.id.btn_changepass_student) { // Change Password (Done)
             if (btn_changepass_student.getText().toString().trim().equals("Save")) {
                 if (edt_ID_student.getText().toString().trim().equals("")
                         || edt_phone_student.getText().toString().trim().equals("")
@@ -120,17 +128,33 @@ public class ProfileStudentActivity extends AppCompatActivity implements IProfil
                     Toast.makeText(this, "Please complete all information!", Toast.LENGTH_SHORT).show();
                 } else {
                     uploadimgaetoserver();
-                    Intent student = new Intent(this, ProfileStudentActivity.class);
-                    student.putExtra("ID_STUDENT", id_student);  // Truyền ID_STUDENT
+                    Intent student = new Intent(this, ProfileStudentActivity.class); // --> Turn to ProfileStudentActivity (go nowhere)
+                    student.putExtra("ID_STUDENT", id_student);
                     startActivity(student);
                 }
             } else {
-                Intent student = new Intent(this, ChangePasswordStudentActivity.class);
-                student.putExtra("ID_STUDENT", id_student);  // Truyền ID_STUDENT
+                Intent student = new Intent(this, ChangePasswordStudentActivity.class); // --> Turn to ChangePasswordStudentActivity
+                student.putExtra("ID_STUDENT", id_student);
                 startActivity(student);
             }
         }
 
+    }
+
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == SELECT_PICTURE && resultCode == RESULT_OK && data !=null)
+        {
+            Uri uri = data.getData();
+            realpath = getRealPathFromURI(uri);
+            try {
+                InputStream inputStream = getContentResolver().openInputStream(uri);
+                Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
+                img_avatar_student.setImageBitmap(bitmap);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     @Override
@@ -138,46 +162,27 @@ public class ProfileStudentActivity extends AppCompatActivity implements IProfil
         super.onDestroy();
     }
 
-    public void mapping() {
-        edt_fullname_student = (EditText) findViewById(R.id.edt_fullname_teacher);
-        edt_email_student = (EditText) findViewById(R.id.edt_email_teacher);
-        edt_phone_student = (EditText) findViewById(R.id.edt_phone_teacher);
-        edt_class_student = (EditText) findViewById(R.id.edt_major_teacher);
-        edt_school_student = (EditText) findViewById(R.id.edt_school_student);
-        edt_birthday_student = (EditText) findViewById(R.id.edt_birthday_teacher);
-        edt_ID_student = (EditText) findViewById(R.id.edt_ID_teacher);
-        btn_update_student = (Button) findViewById(R.id.btn_update_teacher);
-        img_btn_home = (ImageView) findViewById(R.id.img_btn_home_teacher);
-        img_btn_back = (ImageView) findViewById(R.id.img_btn_back_teacher);
-        img_avatar_student = (CircleImageView) findViewById(R.id.img_avatar_teacher);
-        btn_update_student = (Button) findViewById(R.id.btn_update_teacher);
-        btn_changepass_student = (Button) findViewById(R.id.btn_changepass_teacher);
-        btn_choose_image = (Button) findViewById(R.id.btn_choose_image_teacher);
-
-        rb_male_student = (RadioButton) findViewById(R.id.rb_male_teacher);
-        rb_female_student = (RadioButton) findViewById(R.id.rb_female_teacher);
-    }
-
-
     @Override
     public void showInforStudent(String student_id, String student_name, String student_birth, String student_gender, String student_mail, String student_phone, String student_hinhanh) {
-//        edt_school_student.setText("ĐH SPKT TPHCM");
+//        System.out.println("ProfileStudentActivity + showInforStudent");
         edt_school_student.setText("ĐH SPHN");
-        edt_class_student.setText("18110CL1B");
+        edt_class_student.setText("E4");
         edt_ID_student.setText(student_id);
         edt_email_student.setText(student_mail);
         edt_phone_student.setText(student_phone);
         edt_birthday_student.setText(student_id);
         edt_fullname_student.setText(student_name);
         edt_birthday_student.setText(student_birth);
-        hinhanhUrl = student_hinhanh;
-        Picasso.get().load(student_hinhanh).into(img_avatar_student);
+        IPConfigModel ipConfigModel = new IPConfigModel();
+        String path = "http://"+ipConfigModel.getIpconfig()+"/PHP_API/Upload/student_images/";
+        hinhanhUrl = path+student_hinhanh;
+        Picasso.get().load(hinhanhUrl).into(img_avatar_student);
         if (student_gender.equals("nam")) {
             rb_male_student.setChecked(true);
         } else {
             rb_female_student.setChecked(true);
         }
-        disable();
+//        disable();
         btn_choose_image.setVisibility(View.INVISIBLE);
     }
 

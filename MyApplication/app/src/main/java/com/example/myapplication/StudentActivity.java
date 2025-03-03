@@ -14,6 +14,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.myapplication.model.IPConfigModel;
+import com.example.myapplication.model.IPConfigModel;
 import com.example.myapplication.presenter.IProfileStudentPresenter;
 import com.example.myapplication.presenter.ProfileStudentPresenter;
 import com.example.myapplication.view.IProfileStudentView;
@@ -44,7 +45,7 @@ public class StudentActivity extends AppCompatActivity implements IProfileStuden
         btn_schedule_student.setOnClickListener(this); // Schedule (Done)
         btn_classlist_student.setOnClickListener(this); // class list
         btn_studentlist_student.setOnClickListener(this); // Student list
-                                                            // Search (NF)
+        // Search (NF)
         btn_about.setOnClickListener(this); // about (version app)
     }
 
@@ -58,23 +59,23 @@ public class StudentActivity extends AppCompatActivity implements IProfileStuden
         btn_classlist_student = (Button) findViewById(R.id.btn_classlist_student); // class list
         btn_studentlist_student = (Button) findViewById(R.id.btn_studentlist_student); // Student list
         img_avatar_main_student = (ImageView) findViewById(R.id.img_avatar_main_student); // avatar
-        fullname_main_student = (TextView) findViewById(R.id.fullnam_main_teacher); // Full Name
-        numberId_main_student = (TextView) findViewById(R.id.Number_ID_main_teacher);
-        btn_about = (Button) findViewById(R.id.btn_about);
+        fullname_main_student = (TextView) findViewById(R.id.fullname_main_student); // Full Name
+        numberId_main_student = (TextView) findViewById(R.id.Number_ID_main_teacher); // Student Number
+        btn_about = (Button) findViewById(R.id.btn_about); // Version App
     }
 
     @Override
     public void onClick(View v) {
-        if (v.getId() == R.id.btn_attendence_student) { // attendence
+        if (v.getId() == R.id.btn_attendence_student) { // attendence (half done)
             // --> Turn to ProfileStudentPresenter
 //            System.out.println("StudentActivity + onClick + attendence");
             Intent studentattendance = new Intent(this, AttendenceStudentActivity.class);
             studentattendance.putExtra("ID_STUDENT", id_student);
             startActivity(studentattendance);
 
-        } else if (v.getId() == R.id.btn_information_teacher) {
-            Intent student = new Intent(this, ProfileStudentActivity.class);
-            student.putExtra("ID_STUDENT", id_student);  //
+        } else if (v.getId() == R.id.btn_information_student) { // information
+            Intent student = new Intent(this, ProfileStudentActivity.class); // --> Turn to ProfileStudentActivity
+            student.putExtra("ID_STUDENT", id_student);
             startActivity(student);
 
         } else if (v.getId() == R.id.btn_present_student) {
@@ -136,9 +137,6 @@ public class StudentActivity extends AppCompatActivity implements IProfileStuden
     @Override
     public void showInforStudentMain(String student_id, String student_name, String student_image) {
 //        System.out.println("StudentActivity + showInforStudentMain");
-//        System.out.println(student_id);
-//        System.out.println(student_name);
-//        System.out.println(student_image);
         numberId_main_student.setText(student_id);
         fullname_main_student.setText(student_name);
         IPConfigModel ipConfigModel = new IPConfigModel();
