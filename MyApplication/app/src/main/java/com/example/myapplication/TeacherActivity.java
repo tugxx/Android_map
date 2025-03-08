@@ -13,6 +13,7 @@ import android.widget.TextView;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.myapplication.model.IPConfigModel;
 import com.example.myapplication.presenter.IProfileTeacherPresenter;
 import com.example.myapplication.presenter.ProfileTeacherPresenter;
 import com.example.myapplication.view.IProfileTeacherView;
@@ -28,14 +29,13 @@ public class TeacherActivity extends AppCompatActivity implements IProfileTeache
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+//        requestWindowFeature(Window.FEATURE_NO_TITLE);
+//        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.acctivity_main_teacher);
         mapping();
         Intent intent_teacher = getIntent();
         id_teacher = intent_teacher.getStringExtra("ID_TEACHER");
-        profileTeacherPresenter.getIDMainTeacher(id_teacher, this);
-
+        profileTeacherPresenter.getIDMainTeacher(id_teacher, this); // --> Turn into ProfileTeacherPresenter
         btn_attendence_teacher.setOnClickListener(this);
         btn_present_teacher.setOnClickListener(this);
         btn_absent_teacher.setOnClickListener(this);
@@ -62,64 +62,6 @@ public class TeacherActivity extends AppCompatActivity implements IProfileTeache
 
     @Override
     public void onClick(View v) {
-//        switch (v.getId()) {
-//            case R.id.btn_attendence_teacher:
-//                Intent teacher = new Intent(this, AttendenceTeacherActivity.class);
-//                teacher.putExtra("ID_TEACHER", id_teacher);  // Truyền ID_TEACHER
-//                startActivity(teacher);
-//                break;
-//            case R.id.btn_present_teacher:
-//                Intent teacher1 = new Intent(this, PresentTeacherActivity.class);
-//                teacher1.putExtra("ID_TEACHER", id_teacher);  // Truyền ID_TEACHER
-//                startActivity(teacher1);
-//                break;
-//            case R.id.btn_absent_teacher:
-//                Intent teacher2 = new Intent(this, AbsentTeacherActivity.class);
-//                teacher2.putExtra("ID_TEACHER", id_teacher);  // Truyền ID_TEACHER
-//                startActivity(teacher2);
-//                break;
-//            case R.id.img_logout:
-//                AlertDialog.Builder builder = new AlertDialog.Builder(TeacherActivity.this);
-//                builder.setTitle("LOGOUT ACCOUNT").
-//                        setMessage("You sure, that you want to logout?");
-//                builder.setPositiveButton("Yes",
-//                        new DialogInterface.OnClickListener() {
-//                            public void onClick(DialogInterface dialog, int id) {
-//                                finish();
-//                                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-//                                startActivity(intent);
-//                            }
-//                        });
-//                builder.setNegativeButton("No",
-//                        new DialogInterface.OnClickListener() {
-//                            public void onClick(DialogInterface dialog, int id) {
-//                                dialog.cancel();
-//                            }
-//                        });
-//                AlertDialog alert11 = builder.create();
-//                alert11.show();
-//                break;
-//            case R.id.btn_classlist_teacher:
-//                Intent teacherClassList = new Intent(this, TClassListActivity.class);
-//                teacherClassList.putExtra("ID_TEACHER", id_teacher);  // Truyền ID_TEACHER
-//                startActivity(teacherClassList);
-//                break;
-//            case R.id.btn_schedule_teacher:
-//                Intent teacherSchedule = new Intent(this, TeacherScheduleActivity.class);
-//                teacherSchedule.putExtra("ID_TEACHER", id_teacher);  // Truyền ID_TEACHER
-//                startActivity(teacherSchedule);
-//                break;
-//            case R.id.btn_information_teacher:
-//                Intent teacher01 = new Intent(this, ProfileTeacherActivity.class);
-//                teacher01.putExtra("ID_TEACHER", id_teacher);  // Truyền ID_TEACHER
-//                startActivity(teacher01);
-//                break;
-//            case R.id.btn_about:
-//                Intent about = new Intent(this, AboutActivity.class);
-//                about.putExtra("ID_TEACHER", id_teacher);  // Truyền ID_TEACHER
-//                startActivity(about);
-//        }
-
         if (v.getId() == R.id.btn_attendence_teacher) {
             Intent teacher = new Intent(this, AttendenceTeacherActivity.class);
             teacher.putExtra("ID_TEACHER", id_teacher);
@@ -184,6 +126,8 @@ public class TeacherActivity extends AppCompatActivity implements IProfileTeache
     public void showInforTeacherMain(String teacher_id, String teacher_name, String teacher_image) {
         numberId_main_teacher.setText(teacher_id);
         fullname_main_teacher.setText(teacher_name);
-        Picasso.get().load(teacher_image).into(img_avatar_main_teacher);
+        IPConfigModel ipConfigModel = new IPConfigModel();
+        String path = "http://"+ipConfigModel.getIpconfig()+"/PHP_API/Upload/teacher_images/"+teacher_image;
+        Picasso.get().load(path).into(img_avatar_main_teacher);
     }
 }

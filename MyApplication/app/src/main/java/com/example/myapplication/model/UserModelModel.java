@@ -87,11 +87,6 @@ public class UserModelModel extends AppCompatActivity implements IUserModel {
                         dbteacher_id = object.getString("i_teacher").trim();
 
 //                        System.out.println("UserModelModel - checkUserValidity - onResponse");
-//                        System.out.println("dbusername "+dbusername);
-//                        System.out.println("dbpassword "+dbpassword);
-//                        System.out.println("dbrole "+dbrole);
-//                        System.out.println("dbstudent_id "+dbstudent_id);
-//                        System.out.println("dbteacher_id "+dbteacher_id);
                         if (object != null) {
                             // --> Turn to LoginActivity
                             loginView.onLoginResult(dbrole, dbteacher_id, dbstudent_id);

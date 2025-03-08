@@ -99,7 +99,9 @@ public class LoginActivity extends AppCompatActivity implements ILoginView, View
             startActivity(new Intent(LoginActivity.this, AdminActivity.class));
             finish();
         } else if (role.equals("2")) { // Teacher
+            System.out.println("LoginActivity + onLoginResult + Teacher");
             handlePreferences();
+            // --> Turn to TeacherActivity
             Intent teacher = new Intent(this, TeacherActivity.class);
             teacher.putExtra("ID_TEACHER", id_teacher); // Truyền ID_TEACHER
             startActivity(teacher);

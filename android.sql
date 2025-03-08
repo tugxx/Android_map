@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 03, 2025 at 07:57 AM
+-- Generation Time: Mar 08, 2025 at 05:35 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -124,6 +124,30 @@ CREATE TABLE `subject` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `teacher`
+--
+
+CREATE TABLE `teacher` (
+  `teacher_id` int(11) NOT NULL,
+  `teacher_name` varchar(50) NOT NULL,
+  `teacher_birth` date NOT NULL,
+  `teacher_gender` varchar(50) NOT NULL,
+  `teacher_mail` varchar(50) DEFAULT NULL,
+  `teacher_phone` varchar(50) DEFAULT NULL,
+  `teacher_image` varchar(10) DEFAULT NULL,
+  `status` varchar(50) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `teacher`
+--
+
+INSERT INTO `teacher` (`teacher_id`, `teacher_name`, `teacher_birth`, `teacher_gender`, `teacher_mail`, `teacher_phone`, `teacher_image`, `status`) VALUES
+(1, 'DT', '2000-03-23', 'nam', NULL, NULL, 'anh1.jpg', NULL);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
@@ -143,7 +167,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `password`, `oldpass`, `i_student`, `i_teacher`, `i_role`, `status`) VALUES
-(1, 'hello', '1234', NULL, 725105187, NULL, '3', NULL);
+(1, 'student', '1234', NULL, 725105187, NULL, '3', NULL),
+(2, 'teacher', '1234', NULL, NULL, 1, '2', NULL);
 
 --
 -- Indexes for dumped tables
@@ -174,6 +199,12 @@ ALTER TABLE `student_class`
   ADD PRIMARY KEY (`student_id`,`class_id`);
 
 --
+-- Indexes for table `teacher`
+--
+ALTER TABLE `teacher`
+  ADD PRIMARY KEY (`teacher_id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -184,10 +215,16 @@ ALTER TABLE `users`
 --
 
 --
+-- AUTO_INCREMENT for table `teacher`
+--
+ALTER TABLE `teacher`
+  MODIFY `teacher_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
