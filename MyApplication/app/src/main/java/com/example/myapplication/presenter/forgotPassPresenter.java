@@ -23,6 +23,7 @@ public class forgotPassPresenter extends AppCompatActivity implements IforgotPas
     @Override
     public void checkUsername(String username, IForgotPassView iForgotPassView) {
         iForgotPassModel = new ForgotPassModel(username,iForgotPassView);
+        // --> Turn to ForgotPassModel (Line 38)
         iForgotPassModel.checkUser(username, iForgotPassView);
     }
 }

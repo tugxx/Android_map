@@ -30,12 +30,12 @@ public class PresentStudentPresenter implements IPresentStudentPresenter {
     @Override
     public void doLoadListClass(String id, IPresentStudentView context) {
         iClass = new ClassModel(id, context);
-        iClass.getDataClassForIDStudent(id, context);
+        iClass.getDataClassForIDStudent(id, context); // --> Turn to ClassModel (Line 175)
     }
 
     @Override
     public void doLoadtimepresent(String class_id, String student_id, IPresentTimeStudentView context) {
         iPresentStudentModel = new PresentStudentModel(class_id, student_id, context);
-        iPresentStudentModel.GetAttendanceForClassStudentChoose(context);
+        iPresentStudentModel.GetAttendanceForClassStudentChoose(context); // --> Turn to PresentStudentModel (Line 61)
     }
 }

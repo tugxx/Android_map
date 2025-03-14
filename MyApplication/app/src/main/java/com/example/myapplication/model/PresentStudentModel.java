@@ -76,7 +76,8 @@ public class PresentStudentModel extends AppCompatActivity implements IPresentSt
                             PresentStudentModel time_present_data = new PresentStudentModel(object.getString("attendance_time").trim());
                             ListTimePresent.add(time_present_data);
                         }
-                        iPresentTimeStudentView.onLisTimeStudentResult(ListTimePresent);
+                        // --> Turn to PresentTimeStudentActivity (Line 71)
+                        iPresentTimeStudentView.onListTimeStudentResult(ListTimePresent);
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }

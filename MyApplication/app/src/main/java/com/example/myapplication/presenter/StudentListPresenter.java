@@ -17,9 +17,10 @@ public class StudentListPresenter implements IStudentListPresenter {
         this.iStudentListView = iStudentListView;
         handler = new Handler(Looper.getMainLooper());
     }
+
     @Override
     public void doLoadListStudent(String id, IStudentListView context) {
         iStudent = new StudentModel(id, context);
-        iStudent.getDataStudentForIDStudent(id, context);
+        iStudent.getDataStudentForIDStudent(id, context); // --> Turn to StudentModel
     }
 }

@@ -32,11 +32,13 @@ public class ChangePassModel extends AppCompatActivity implements IChangePassMod
     @Override
     public void changePass(String password, String username, IChangePassView iChangePassView) {
         String url = "http://" + ipConfigModel.getIpconfig() + "/PHP_API/updatepass.php";
+//        System.out.println("ChangePassModel + changePass "+url);
         RequestQueue requestQueue = Volley.newRequestQueue((Context) iChangePassView);
+
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                iChangePassView.responseChangePassword(response);
+                iChangePassView.responseChangePassword(response); // --> Turn to ChangePassActivity (Line 86)
             }
         }, new Response.ErrorListener() {
             @Override
@@ -50,7 +52,7 @@ public class ChangePassModel extends AppCompatActivity implements IChangePassMod
                 Map<String, String> params = new HashMap<>();
                 // params.put("type","login");
                 params.put("username", username);
-                params.put("password", password);
+                params.put("newPassword", password);
                 return params;
             }
         };

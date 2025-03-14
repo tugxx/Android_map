@@ -56,7 +56,10 @@ public class StudentAdapter extends BaseAdapter implements Filterable {
         View viewClass;
         if (convertView == null) {
             viewClass = View.inflate(parent.getContext(), R.layout.layoutcustom_recyclerview_classlist, null);
-        } else viewClass = convertView;
+        } else {
+            viewClass = convertView;
+        }
+
         StudentModel student_list = (StudentModel) getItem(position);
         ((TextView) viewClass.findViewById(R.id.txtName)).setText(String.format(student_list.getStudent_name()));
 

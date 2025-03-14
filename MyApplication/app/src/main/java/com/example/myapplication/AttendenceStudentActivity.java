@@ -89,8 +89,8 @@ public class AttendenceStudentActivity extends AppCompatActivity implements IAtt
     }
 
     public void ReturnLayout() {
-        System.out.println("ReturnLayout");
-        Intent student = new Intent(this, StudentActivity.class);
+//        System.out.println("AttendenceStudentActivity + ReturnLayout");
+        Intent student = new Intent(this, StudentActivity.class); // --> Turn to StudentActivity
         student.putExtra("ID_STUDENT", student_id);  // Truyền ID_STUDENT
         startActivity(student);
     }
@@ -153,7 +153,7 @@ public class AttendenceStudentActivity extends AppCompatActivity implements IAtt
                 @Override
                 public void onClick(View v) {
                     popupSucessfull.dismiss();
-                    ReturnLayout();
+                    ReturnLayout(); // Turn to line 91
                 }
             });
         } else {

@@ -37,6 +37,7 @@ public class ForgotPassModel extends AppCompatActivity implements IForgotPassMod
     @Override
     public void checkUser(String username,  IForgotPassView context) {
         String url = "http://" + ipConfigModel.getIpconfig() + "/PHP_API/usercheck.php";
+//        System.out.println("ForgotPassModel + checkUser + "+url);
         RequestQueue requestQueue = Volley.newRequestQueue((Context) context);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
@@ -47,10 +48,12 @@ public class ForgotPassModel extends AppCompatActivity implements IForgotPassMod
                         JSONObject object = new JSONObject(response);
                         if ((object.getString("username").trim()).equals(username))
                         {
+                            // --> Turn to ForgotPassActivity (Line 148)
                             iForgotPassView.showPhone(object.getString("student_phone").trim());
                         }
                         else
                         {
+                            // --> Turn to ForgotPassActivity (Line 148)
                             iForgotPassView.showPhone("Not Exist");
                         }
                     } catch (JSONException e) {
@@ -70,7 +73,6 @@ public class ForgotPassModel extends AppCompatActivity implements IForgotPassMod
                 Map<String, String> params = new HashMap<>();
                 // params.put("type","login");
                 params.put("username", username);
-
                 return params;
             }
         };

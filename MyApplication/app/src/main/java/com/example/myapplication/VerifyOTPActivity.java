@@ -36,22 +36,17 @@ public class VerifyOTPActivity extends AppCompatActivity {
     private String str_otp_entered=null;
     private String smsCode = null;
 
-    // nếu code gửi fail, sử dụng tính năng resend
-    private PhoneAuthProvider.ForceResendingToken forceResendingToken;
+    private PhoneAuthProvider.ForceResendingToken forceResendingToken; // nếu code gửi fail, sử dụng tính năng resend
 
-    // hàm để nhận biết code đã đc gửi hay chưa
-    private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks;
+    private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks; // hàm để nhận biết code đã đc gửi hay chưa
 
     private String mVerificationId; // giữ OTP/ verify OTP
 
-    // Kết nối với firebase gọi ra để dùng
-    private FirebaseAuth firebaseAuth;
+    private FirebaseAuth firebaseAuth; // Kết nối với firebase
 
     private static final String TAG = "MAIN_TAG";
 
-
-    // progres dialog cái này để hiển thị cái màn hình chờ gửi code
-    private ProgressDialog pd;
+    private ProgressDialog pd; // hiển thị cái màn hình chờ gửi code
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

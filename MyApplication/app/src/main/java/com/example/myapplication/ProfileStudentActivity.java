@@ -1,6 +1,5 @@
 package com.example.myapplication;
 
-
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -69,8 +68,8 @@ public class ProfileStudentActivity extends AppCompatActivity implements IProfil
         Intent intent_student = getIntent();
         id_student = intent_student.getStringExtra("ID_STUDENT");
 //        System.out.println("ProfileStudentActivity + onCreate");
-        // Auto open
-        profileStudentPresenter.getIDStudent(id_student, this); // --> Turn to ProfileStudentPresenter
+        // Auto open when log in page (Done)
+        profileStudentPresenter.getIDStudent(id_student, this); // --> Turn to ProfileStudentPresenter (Line 25)
 
         //Set Listener --> Go to onClick
         img_btn_home.setOnClickListener(this); // Home
@@ -113,10 +112,15 @@ public class ProfileStudentActivity extends AppCompatActivity implements IProfil
             student1.putExtra("ID_STUDENT", id_student);
             startActivity(student1);
 
-        } else if (v.getId() == R.id.btn_update_student) { // Update (Not Done)
+        } else if (v.getId() == R.id.img_btn_home_student) { // Home (Done)
+            Intent student1 = new Intent(this, StudentActivity.class); // --> Turn to StudentActivity
+            student1.putExtra("ID_STUDENT", id_student);
+            startActivity(student1);
+
+        } else if (v.getId() == R.id.btn_update_student) { // Update (Done)
             enable();
-//            btn_changepass_student.setText("Save");
-            btn_choose_image.setVisibility(View.VISIBLE);
+            btn_changepass_student.setText("Save");
+            btn_choose_image.setVisibility(View.VISIBLE); // Chọn ảnh
 
         } else if (v.getId() == R.id.btn_changepass_student) { // Change Password (Done)
             if (btn_changepass_student.getText().toString().trim().equals("Save")) {
@@ -126,9 +130,9 @@ public class ProfileStudentActivity extends AppCompatActivity implements IProfil
                         || edt_fullname_student.getText().toString().trim().equals("")
                         || edt_email_student.getText().toString().trim().equals("")) {
                     Toast.makeText(this, "Please complete all information!", Toast.LENGTH_SHORT).show();
-                } else {
-                    uploadimgaetoserver();
-                    Intent student = new Intent(this, ProfileStudentActivity.class); // --> Turn to ProfileStudentActivity (go nowhere)
+                } else { // Save successfully
+                    uploadimgaetoserver(); // Turn to Line 258 (Done)
+                    Intent student = new Intent(this, ProfileStudentActivity.class); // --> Turn to ProfileStudentActivity (Line 59)
                     student.putExtra("ID_STUDENT", id_student);
                     startActivity(student);
                 }
@@ -197,7 +201,7 @@ public class ProfileStudentActivity extends AppCompatActivity implements IProfil
 
     @Override
     public void showInforStudentMain(String student_id, String student_name, String student_image) {
-//        System.out.println("ProfileStudentActivity + showInforStudentMain");
+//        System.out.println("ProfileStudentActivity + showInforStudentMain " + student_name);
     }
 
     private void disable() {
@@ -255,7 +259,7 @@ public class ProfileStudentActivity extends AppCompatActivity implements IProfil
     {
         if(realpath.equals(""))
         {
-            updateInforStudent(hinhanhUrl);
+            updateInforStudent(hinhanhUrl); // Turn to line 230
         }
         else {
             File file = new File(realpath);
@@ -275,7 +279,7 @@ public class ProfileStudentActivity extends AppCompatActivity implements IProfil
                     if (response != null) {
                         String message = response.body();
                         hinhanhUrl = APIUtils.Base_Ur + "image/" + message;
-                        updateInforStudent(hinhanhUrl);
+                        updateInforStudent(hinhanhUrl); // Turn to Line 230
                     }
                 }
 

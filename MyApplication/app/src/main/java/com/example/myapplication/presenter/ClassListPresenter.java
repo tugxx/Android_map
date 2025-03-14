@@ -18,10 +18,9 @@ public class ClassListPresenter implements IClassListPresenter{
         handler = new Handler(Looper.getMainLooper());
     }
 
-
     @Override
     public void doLoadListClass(String id, ISClassListView context) {
         iClass = new ClassModel(id, context);
-        iClass.getDataClassForIDStudent(id, context);
+        iClass.getDataClassForIDStudent(id, context); // Turn to ClassModel (Line 358)
     }
 }

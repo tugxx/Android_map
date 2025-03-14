@@ -5,7 +5,14 @@
     <uses-feature
         android:name="android.hardware.camera"
         android:required="false" />
+    <uses-feature
+        android:name="android.hardware.telephony"
+        android:required="false" />
+
     <uses-permission android:name="android.permission.CAMERA" />
+<!--    <uses-permission android:name="android.permission.SEND_SMS" />-->
+<!--    <uses-permission android:name="android.permission.RECEIVE_SMS" />-->
+<!--    <uses-permission android:name="android.permission.READ_SMS" />-->
 
     <application
         android:allowBackup="true"
@@ -25,16 +32,41 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".StudentActivity" />
         <activity android:name=".ForgotPassActivity" />
+        <activity android:name=".ChangePassActivity" />
+        <activity android:name=".ForgotPasswordActivity"/>
+        <activity android:name=".StudentActivity" />
         <activity android:name=".AttendenceStudentActivity" />
         <activity android:name=".ProfileStudentActivity" />
+        <activity android:name=".ChangePasswordStudentActivity" />
         <activity android:name=".PresentStudentActivity" />
+        <activity android:name=".PresentTimeStudentActivity" />
         <activity android:name=".StudentScheduleActivity" />
+        <activity android:name=".ScheduleDetailStudentActivity" />
         <activity android:name=".SClassListActivity" />
+        <activity android:name=".SclassListDetailActivity" />
+        <activity android:name=".DetailStudentActivity" />
         <activity android:name=".StudentListActivity" />
+        <activity android:name=".AboutActivity" />
+
         <activity android:name=".TeacherActivity" />
+        <activity android:name=".AdminActivity" />
     </application>
 </manifest>
 
-<!--    android:name=".MainActivity"-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

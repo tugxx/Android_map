@@ -163,8 +163,8 @@ public class ScheduleModel implements IScheduleModel {
                                     ,student_id,s_location,teacher_id);
                             ListClass.add(schedule_data);
                         }
-                        iScheduleStudentView.onListScheduleStudentResult(ListClass);
 
+                        iScheduleStudentView.onListScheduleStudentResult(ListClass); // --> Turn to StudentScheduleActivity (Line 94)
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }

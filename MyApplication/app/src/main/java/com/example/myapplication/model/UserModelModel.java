@@ -66,9 +66,8 @@ public class UserModelModel extends AppCompatActivity implements IUserModel {
     public void checkUserValidity(ILoginView context) {
         // use IPConfigModel class
         String url = "http://" + ipConfigModel.getIpconfig() + "/PHP_API/getuser.php";
-//        String url = "http://" + ipConfigModel.getIpconfig() + "/student_attendence/getuser.php";
 
-//        System.out.println("UserModelModel - checkUserValidity "+url);
+//        System.out.println("UserModelModel Line 70 "+url);
         RequestQueue requestQueue = Volley.newRequestQueue((Context) context);
         // requestQueue.start();
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
@@ -86,9 +85,9 @@ public class UserModelModel extends AppCompatActivity implements IUserModel {
                         dbstudent_id = object.getString("i_student").trim();
                         dbteacher_id = object.getString("i_teacher").trim();
 
-//                        System.out.println("UserModelModel - checkUserValidity - onResponse");
+//                        System.out.println("UserModelModel + checkUserValidity");
                         if (object != null) {
-                            // --> Turn to LoginActivity
+                            // --> Turn to LoginActivity (Line 104)
                             loginView.onLoginResult(dbrole, dbteacher_id, dbstudent_id);
                         }
                     } catch (JSONException e) {

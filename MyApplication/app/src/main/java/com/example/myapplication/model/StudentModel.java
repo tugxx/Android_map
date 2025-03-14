@@ -144,23 +144,29 @@ public class StudentModel implements IStudentModel, Serializable {
                     Toast.makeText((Context) isClassListDetailView, "List is Empty ! Please Update data again !  ", Toast.LENGTH_LONG).show();
                 } else {
                         try {
+//                        System.out.println("StudentModel + getDataStudentForIDClass");
                         ArrayList<StudentModel> ListStudent = new ArrayList<StudentModel>();
                         JSONArray jsonArray = new JSONArray(response);
                         for (int i = 0; i < jsonArray.length(); i++) {
                             JSONObject object = jsonArray.getJSONObject(i);
                             student_id = object.getString("id").trim();
                             student_name = object.getString("fname").trim();
+                            System.out.println(student_name + ", " + object.getString("fname").trim());
                             student_birth = object.getString("birth").trim();
                             student_gender = object.getString("gender").trim();
                             student_mail = object.getString("mail").trim();
                             student_phone = object.getString("phone").trim();
                             student_image = object.getString("image").trim();
-                            status = object.getInt("status");
+                            if (!object.isNull("status")) {
+                                status = object.getInt("status");
+                            } else {
+                                status = 0;
+                            }
                             StudentModel student_data = new StudentModel(student_id, student_name,student_birth,
                                     student_gender,student_mail, student_phone, student_image,status);
                             ListStudent.add(student_data);
                         }
-                        isClassListDetailView.onListClassStudentResult(ListStudent);
+                        isClassListDetailView.onListClassStudentResult(ListStudent); // --> Turn to SclassListDetailActivity (Line 100)
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -239,6 +245,7 @@ public class StudentModel implements IStudentModel, Serializable {
         String url = "http://" + ipConfigModel.getIpconfig() + "/PHP_API/dbStudentList.php";
         RequestQueue requestQueue = Volley.newRequestQueue((Context) context);
         // requestQueue.start();
+
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -251,18 +258,24 @@ public class StudentModel implements IStudentModel, Serializable {
                         for (int i = 0; i < jsonArray.length(); i++) {
                             JSONObject object = jsonArray.getJSONObject(i);
                             student_id = object.getString("id").trim();
+                            System.out.println();
                             student_name = object.getString("fname").trim();
                             student_birth = object.getString("birth").trim();
                             student_gender = object.getString("gender").trim();
                             student_mail = object.getString("mail").trim();
                             student_phone = object.getString("phone").trim();
                             student_image = object.getString("image").trim();
-                            status = object.getInt("status");
+                            if (!object.isNull("status")) {
+                                status = object.getInt("status");
+                            } else {
+                                status = 0;
+                            }
                             StudentModel student_data = new StudentModel(student_id, student_name,student_birth,
                                     student_gender,student_mail, student_phone, student_image,status);
                             ListStudent.add(student_data);
                         }
-                        iStudentListView.onListClassStudentResult(ListStudent);
+
+                        iStudentListView.onListClassStudentResult(ListStudent); // --> Turn to StudentListActivity (Line 86)
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }

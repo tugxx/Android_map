@@ -56,7 +56,10 @@ public class ClassSAdapterActivity extends BaseAdapter implements Filterable {
         View viewClass;
         if (convertView == null) {
             viewClass = View.inflate(parent.getContext(), R.layout.layoutcustom_recyclerview_classlist, null);
-        } else viewClass = convertView;
+        } else {
+            viewClass = convertView;
+        }
+
         ClassModel class_list = (ClassModel) getItem(position);
         ((TextView) viewClass.findViewById(R.id.txtName)).setText(String.format(class_list.getClass_name()));
 

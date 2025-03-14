@@ -148,6 +148,7 @@ public class ClassModel extends AppCompatActivity implements IClassModel {
                             ClassModel class_data = new ClassModel(dbclass_id, dbclass_name, dbclass_idteacher, dbclass_totalstudent);
                             ListClass.add(class_data);
                         }
+//                        System.out.println("ClassModel");
                         iAttendenceTeacherView.onListClassResult(ListClass);
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -192,7 +193,8 @@ public class ClassModel extends AppCompatActivity implements IClassModel {
                             ClassModel class_data = new ClassModel(dbclass_id, dbclass_name);
                             ListClass.add(class_data);
                         }
-                        iPresentStudentView.onListClassStudentResult(ListClass);
+//                        System.out.println("ClassModel + getDataClassForIDStudent");
+                        iPresentStudentView.onListClassStudentResult(ListClass); // --> Turn to PresentStudentActivity (Line 96)
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -373,8 +375,7 @@ public class ClassModel extends AppCompatActivity implements IClassModel {
                             ClassModel class_data = new ClassModel(dbclass_id, dbclass_name);
                             ListClass.add(class_data);
                         }
-                        iClassListView.onListClassStudentResult(ListClass);
-
+                        iClassListView.onListClassStudentResult(ListClass); // --> Turn to SClassListActivity (Line 92)
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }

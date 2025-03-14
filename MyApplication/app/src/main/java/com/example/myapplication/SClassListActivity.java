@@ -38,11 +38,13 @@ public class SClassListActivity extends AppCompatActivity implements ISClassList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_classlist_student);
         AnhXa();
+
         //lay id ma session luu
-        LoadClassForStudent();
+        LoadClassForStudent(); // Turn to line 85
 
         //bắt sự kiện click
         img_btn_back.setOnClickListener(this);
+
         //tìm kiem
         editText.addTextChangedListener(new TextWatcher() {
             @Override
@@ -65,7 +67,7 @@ public class SClassListActivity extends AppCompatActivity implements ISClassList
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 ClassModel class_model = (ClassModel) classAdapterForStudent.getItem(position);
                 //Do in Click Class
-                Intent intent = new Intent(view.getContext() , SclassListDetailActivity.class);
+                Intent intent = new Intent(view.getContext() , SclassListDetailActivity.class); // --> Turn to SclassListDetailActivity
                 intent.putExtra("ID_CLASS", class_model.getClass_id());
                 intent.putExtra("CLASS_NAME", class_model.getClass_name());// Truyền ID_Class
                 intent.putExtra("ID_STUDENT",student_id);
@@ -75,32 +77,31 @@ public class SClassListActivity extends AppCompatActivity implements ISClassList
     }
 
     public void AnhXa() {
-        list = (ListView) findViewById(R.id.recyclerViewStudent);
-        editText = (EditText) findViewById(R.id.editTextTextPersonName);
-        img_btn_back = (ImageView) findViewById(R.id.img_btn_back);
+        list = (ListView) findViewById(R.id.recyclerViewStudent); // ListView
+        editText = (EditText) findViewById(R.id.editTextTextPersonName); // Search class
+        img_btn_back = (ImageView) findViewById(R.id.img_btn_back); // Back <
     }
 
     public void LoadClassForStudent() {
         Intent intent = getIntent();
         student_id =intent.getStringExtra("ID_STUDENT");
-        ClassListPresenter.doLoadListClass(student_id, this);
+        ClassListPresenter.doLoadListClass(student_id, this); // --> Turn to ClassListPresenter (Line 22)
+    }
+
+    @Override
+    public void onListClassStudentResult(ArrayList<ClassModel> List_Class) {
+        // Với setAdapter --> Tìm hàm getView
+        classAdapterForStudent = new ClassSAdapterActivity(this,List_Class); // --> Turn to ClassSAdapterActivity (Line 52)
+        list.setAdapter(classAdapterForStudent);
     }
 
     @Override
     public void onClick(View v) {
-        if (v.getId() == R.id.img_btn_back) {
+        if (v.getId() == R.id.img_btn_back) { // Back <
             Intent intent = new Intent(SClassListActivity.this, StudentActivity.class);
             intent.putExtra("ID_STUDENT", student_id);
             startActivity(intent);
             finish();
         }
-
-    }
-
-
-    @Override
-    public void onListClassStudentResult(ArrayList<ClassModel> List_Class) {
-        classAdapterForStudent = new ClassSAdapterActivity(this,List_Class);
-        list.setAdapter(classAdapterForStudent);
     }
 }

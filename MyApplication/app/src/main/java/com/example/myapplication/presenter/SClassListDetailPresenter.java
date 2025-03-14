@@ -17,10 +17,9 @@ public class SClassListDetailPresenter implements  ISClassListDetailPresenter{
     }
 
 
-
     @Override
     public void doLoadListStudent(String id, ISClassListDetailView context) {
         iStudent = new StudentModel(id, context);
-        iStudent.getDataStudentForIDClass(id, context);
+        iStudent.getDataStudentForIDClass(id, context); // --> Turn to StudentModel (Line 136)
     }
 }

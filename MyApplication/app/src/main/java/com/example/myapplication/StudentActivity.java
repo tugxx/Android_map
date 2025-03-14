@@ -34,19 +34,23 @@ public class StudentActivity extends AppCompatActivity implements IProfileStuden
 //        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main_student);
         mapping();
+
         Intent intent_student = getIntent();
         id_student = intent_student.getStringExtra("ID_STUDENT");
 
-        profileStudentPresenter.getIDMainStudent(id_student, this); // tự động tải(khi vào trang)
-        img_logout_student.setOnClickListener(this); // logout
-        btn_attendence_student.setOnClickListener(this); // attendence
-        btn_information_student.setOnClickListener(this); // information
-        btn_present_student.setOnClickListener(this); // present
+//        System.out.println("StudentActivity");
+        // --> Turn to ProfileStudentPresenter (Line 31) (Done)\
+        profileStudentPresenter.getIDMainStudent(id_student, this); // tự động tải khi vào trang
+
+        img_logout_student.setOnClickListener(this); // logout (Done)
+        btn_attendence_student.setOnClickListener(this); // attendence (Done)
+        btn_information_student.setOnClickListener(this); // information (Done)
+        btn_present_student.setOnClickListener(this); // present (Done)
         btn_schedule_student.setOnClickListener(this); // Schedule (Done)
-        btn_classlist_student.setOnClickListener(this); // class list
-        btn_studentlist_student.setOnClickListener(this); // Student list
-        // Search (NF)
-        btn_about.setOnClickListener(this); // about (version app)
+        btn_classlist_student.setOnClickListener(this); // class list (Done)
+        btn_studentlist_student.setOnClickListener(this); // Student list (Done)
+        // Search (NF) ??
+        btn_about.setOnClickListener(this); // about (version app) (Done)
     }
 
     public void mapping() {
@@ -66,46 +70,46 @@ public class StudentActivity extends AppCompatActivity implements IProfileStuden
 
     @Override
     public void onClick(View v) {
-        if (v.getId() == R.id.btn_attendence_student) { // attendence (half done)
-            // --> Turn to ProfileStudentPresenter
+        if (v.getId() == R.id.btn_attendence_student) { // attendence (done)
+            // --> Turn to AttendenceStudentActivity
 //            System.out.println("StudentActivity + onClick + attendence");
-            Intent studentattendance = new Intent(this, AttendenceStudentActivity.class);
+            Intent studentattendance = new Intent(this, AttendenceStudentActivity.class); // --> Turn to AttendenceStudentActivity
             studentattendance.putExtra("ID_STUDENT", id_student);
             startActivity(studentattendance);
 
-        } else if (v.getId() == R.id.btn_information_student) { // information
+        } else if (v.getId() == R.id.btn_information_student) { // information (done)
             Intent student = new Intent(this, ProfileStudentActivity.class); // --> Turn to ProfileStudentActivity
             student.putExtra("ID_STUDENT", id_student);
             startActivity(student);
 
-        } else if (v.getId() == R.id.btn_present_student) {
-            Intent studentpresent = new Intent(this, PresentStudentActivity.class);
+        } else if (v.getId() == R.id.btn_present_student) { // present (done)
+            Intent studentpresent = new Intent(this, PresentStudentActivity.class); // --> Turn to PresentStudentActivity
             studentpresent.putExtra("ID_STUDENT", id_student);
             startActivity(studentpresent);
 
-        } else if (v.getId() == R.id.btn_schedule_student) { // Schedule
-            Intent studentschedule = new Intent(this, StudentScheduleActivity.class);
+        } else if (v.getId() == R.id.btn_schedule_student) { // Schedule (Done)
+            Intent studentschedule = new Intent(this, StudentScheduleActivity.class); // --> Turn to StudentScheduleActivity
             studentschedule.putExtra("ID_STUDENT", id_student);
             startActivity(studentschedule);
 
-        } else if (v.getId() == R.id.btn_classlist_student) {
-            Intent studentclasslist = new Intent(this, SClassListActivity.class);
+        } else if (v.getId() == R.id.btn_classlist_student) { // Class list (Done)
+            Intent studentclasslist = new Intent(this, SClassListActivity.class); // --> Turn to SClassListActivity
             studentclasslist.putExtra("ID_STUDENT", id_student);
             startActivity(studentclasslist);
 
         } else if (v.getId() == R.id.btn_studentlist_student) { // Student list
-            Intent studentlist = new Intent(this, StudentListActivity.class);
+            Intent studentlist = new Intent(this, StudentListActivity.class); // --> Turn to StudentListActivity (Done)
             studentlist.putExtra("ID_STUDENT", id_student);
             startActivity(studentlist);
 
-        } else if (v.getId() == R.id.img_logout) {
+        } else if (v.getId() == R.id.img_logout) { // Logout
             AlertDialog.Builder builder = new AlertDialog.Builder(StudentActivity.this);
             builder.setTitle("LOGOUT ACCOUNT")
                     .setMessage("You sure, that you want to logout?")
                     .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
                             finish();
-                            Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                            Intent intent = new Intent(getApplicationContext(), LoginActivity.class); // --> Turn to LoginActivity
                             startActivity(intent);
                         }
                     })
@@ -116,12 +120,12 @@ public class StudentActivity extends AppCompatActivity implements IProfileStuden
                     });
             AlertDialog alert11 = builder.create();
             alert11.show();
-        } else if (v.getId() == R.id.btn_about) {
-            Intent about = new Intent(this, AboutActivity.class);
+
+        } else if (v.getId() == R.id.btn_about) { // Version App
+            Intent about = new Intent(this, AboutActivity.class); // --> Turn to AboutActivity
             about.putExtra("ID_STUDENT", id_student);   // Truyền ID_STUDENT
             startActivity(about);
         }
-
     }
 
     @Override
@@ -136,7 +140,7 @@ public class StudentActivity extends AppCompatActivity implements IProfileStuden
 
     @Override
     public void showInforStudentMain(String student_id, String student_name, String student_image) {
-//        System.out.println("StudentActivity + showInforStudentMain");
+//        System.out.println("StudentActivity + showInforStudentMain" + student_name);
         numberId_main_student.setText(student_id);
         fullname_main_student.setText(student_name);
         IPConfigModel ipConfigModel = new IPConfigModel();

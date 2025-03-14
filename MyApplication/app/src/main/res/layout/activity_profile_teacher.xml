@@ -181,7 +181,7 @@
             android:id="@+id/rb_female_teacher"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="15sp"
+            android:layout_marginLeft="0sp"
             android:fontFamily="@font/poppins"
             android:text="Female"
             android:textSize="14sp"

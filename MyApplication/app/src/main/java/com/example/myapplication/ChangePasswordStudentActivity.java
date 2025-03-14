@@ -33,12 +33,12 @@ public class ChangePasswordStudentActivity extends AppCompatActivity implements 
         setContentView(R.layout.activity_change_password_student);
         mapping();
 
-        img_btn_back.setOnClickListener(this);
-        img_btn_home.setOnClickListener(this);
-        btn_changepass.setOnClickListener(this);
-        ic_eye_new.setOnClickListener(this);
-        ic_eye_old.setOnClickListener(this);
-        ic_eye_confirm.setOnClickListener(this);
+        img_btn_back.setOnClickListener(this); // Back <
+        img_btn_home.setOnClickListener(this); // Home
+        btn_changepass.setOnClickListener(this); // Change Password
+        ic_eye_new.setOnClickListener(this); // Eye New Password
+        ic_eye_old.setOnClickListener(this); // Eye Old Password
+        ic_eye_confirm.setOnClickListener(this); // Eye Confirm Password
     }
 
     public void mapping() {
@@ -67,11 +67,12 @@ public class ChangePasswordStudentActivity extends AppCompatActivity implements 
 
         } else if (v.getId() == R.id.btn_update_student) { // Change Password
             if (edt_newpassword.getText().toString().trim().equals(edt_confirmpassword.getText().toString().trim())) {
-                changepassword();
+                changepassword(); // Turn to Line 104
             } else {
                 Toast.makeText(this, "Confirm password incorrect!", Toast.LENGTH_SHORT).show();
             }
-        } else if (v.getId() == R.id.ic_eye_new) {
+
+        } else if (v.getId() == R.id.ic_eye_new) { // Eye New Password
             if (ic_eye_new.getDrawable().getConstantState().equals(getResources().getDrawable(R.drawable.eye).getConstantState())) {
                 ic_eye_new.setImageResource(R.drawable.eye_closed);
                 edt_oldpassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
@@ -79,7 +80,8 @@ public class ChangePasswordStudentActivity extends AppCompatActivity implements 
                 ic_eye_new.setImageResource(R.drawable.eye);
                 edt_oldpassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
             }
-        } else if (v.getId() == R.id.ic_eye_old) {
+
+        } else if (v.getId() == R.id.ic_eye_old) { // Eye Old Password
             if (ic_eye_old.getDrawable().getConstantState().equals(getResources().getDrawable(R.drawable.eye).getConstantState())) {
                 ic_eye_old.setImageResource(R.drawable.eye_closed);
                 edt_newpassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
@@ -87,7 +89,8 @@ public class ChangePasswordStudentActivity extends AppCompatActivity implements 
                 ic_eye_old.setImageResource(R.drawable.eye);
                 edt_newpassword.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
             }
-        } else if (v.getId() == R.id.ic_eye_confirm) {
+
+        } else if (v.getId() == R.id.ic_eye_confirm) { // Eye Confirm Password
             if (ic_eye_confirm.getDrawable().getConstantState().equals(getResources().getDrawable(R.drawable.eye).getConstantState())) {
                 ic_eye_confirm.setImageResource(R.drawable.eye_closed);
                 edt_confirmpassword.setTransformationMethod(PasswordTransformationMethod.getInstance());
@@ -103,7 +106,7 @@ public class ChangePasswordStudentActivity extends AppCompatActivity implements 
         id_student = intent_student.getStringExtra("ID_STUDENT");
         String old_password = edt_oldpassword.getText().toString().trim();
         String new_password = edt_newpassword.getText().toString().trim();
-        // --> Turn to ChangePasswordStudentPresenter
+        // --> Turn to ChangePasswordStudentPresenter (Line 24)
         changePasswordStudentPresenter.checkChangePass(id_student, old_password, new_password, this);
     }
 

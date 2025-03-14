@@ -31,17 +31,17 @@ public class SclassListDetailActivity extends AppCompatActivity implements ISCla
     private ISClassListDetailPresenter isClassListDetailPresenter = new SClassListDetailPresenter(this);
     ArrayList<StudentModel> List_Student;
     StudentAdapter studentAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_studentlist);
         AnhXa();
-        LoadClassForStudent();
+        LoadClassForStudent(); // Turn to line 76
 
         //return Home
         img_btn_home.setOnClickListener(this);
         img_btn_back.setOnClickListener(this);
-        //tìm kiếm
 
 
         // Funcion on Click list view
@@ -50,7 +50,7 @@ public class SclassListDetailActivity extends AppCompatActivity implements ISCla
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 StudentModel student_model = (StudentModel) studentAdapter.getItem(position);
                 //Do in Click Class
-                Intent intent = new Intent(view.getContext() , DeatailStudentActivity.class);
+                Intent intent = new Intent(view.getContext() , DetailStudentActivity.class); // --> Turn to DetailStudentActivity
                 intent.putExtra("STUDENT_ID", student_model.getStudent_id());
                 intent.putExtra("STUDENT_NAME", student_model.getStudent_name());
                 intent.putExtra("STUDENT_EMAIL", student_model.getStudent_mail());
@@ -65,14 +65,6 @@ public class SclassListDetailActivity extends AppCompatActivity implements ISCla
         });
     }
 
-    public void LoadClassForStudent() {
-        Intent intent = getIntent();
-        class_id =intent.getStringExtra("ID_CLASS");
-        id_student =intent.getStringExtra("ID_STUDENT");
-        class_name =intent.getStringExtra("CLASS_NAME");
-        isClassListDetailPresenter.doLoadListStudent(class_id, this);
-
-    }
     public void AnhXa() {
         list = (ListView) findViewById(R.id.recyclerviewStudent);
         editText = (EditText) findViewById(R.id.editTextTextPersonName);
@@ -80,40 +72,33 @@ public class SclassListDetailActivity extends AppCompatActivity implements ISCla
         img_btn_back = (ImageView) findViewById(R.id.img_btn_back);
     }
 
+    public void LoadClassForStudent() {
+        Intent intent = getIntent();
+        class_id = intent.getStringExtra("ID_CLASS");
+        id_student = intent.getStringExtra("ID_STUDENT");
+        class_name = intent.getStringExtra("CLASS_NAME");
+        isClassListDetailPresenter.doLoadListStudent(class_id, this); // --> Turn to SClassListDetailPresenter (Line 21)
+    }
+
     @Override
     public void onClick(View v) {
-//        switch (v.getId()) {
-//            case R.id.img_btn_home:
-//                Intent intent1 = new Intent(SclassListDetailActivity.this, StudentActivity.class);
-//                intent1.putExtra("ID_STUDENT", id_student);
-//                startActivity(intent1);
-//                finish();
-//                break;
-//            case R.id.img_btn_back:
-//                Intent intent = new Intent(SclassListDetailActivity.this, SClassListActivity.class);
-//                intent.putExtra("ID_STUDENT", id_student);
-//                startActivity(intent);
-//                finish();
-//                break;
-//        }
-
-        if (v.getId() == R.id.img_btn_home) {
-            Intent intent1 = new Intent(SclassListDetailActivity.this, StudentActivity.class);
+        if (v.getId() == R.id.img_btn_home) { // Home
+            Intent intent1 = new Intent(SclassListDetailActivity.this, StudentActivity.class); // --> Turn to StudentActivity
             intent1.putExtra("ID_STUDENT", id_student);
             startActivity(intent1);
             finish();
-        } else if (v.getId() == R.id.img_btn_back) {
-            Intent intent = new Intent(SclassListDetailActivity.this, SClassListActivity.class);
+        } else if (v.getId() == R.id.img_btn_back) { // Back <
+            Intent intent = new Intent(SclassListDetailActivity.this, SClassListActivity.class); // --> Turn to SClassListActivity
             intent.putExtra("ID_STUDENT", id_student);
             startActivity(intent);
             finish();
         }
-
     }
 
     @Override
     public void onListClassStudentResult(ArrayList<StudentModel> List_Student) {
-        studentAdapter = new StudentAdapter(this,List_Student);
+        // Với Adapter --> Tìm hàm getView
+        studentAdapter = new StudentAdapter(this,List_Student); // --> Turn to StudentAdapter (Line 52)
         list.setAdapter(studentAdapter);
     }
 }

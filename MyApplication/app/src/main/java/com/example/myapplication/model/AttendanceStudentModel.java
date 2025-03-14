@@ -96,12 +96,12 @@ public class AttendanceStudentModel extends AppCompatActivity implements IAttend
     public void AddAttendanceStudentModel(IAttendanceStudentView context) {
         String url = "http://" + ipConfigModel.getIpconfig() + "/PHP_API/attendance.php";
         RequestQueue requestQueue = Volley.newRequestQueue((Context) context);
-//        System.out.println("AttendanceStudentModel + AddAttendanceStudentModel");
+//        System.out.println("AttendanceStudentModel + AddAttendanceStudentModel + "url);
         // requestQueue.start();
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
-            @Override // --> Turn to AttendenceStudentActivity
-            public void onResponse(String response) {
-                System.out.println(response);
+            @Override
+            public void onResponse(String response) { // --> Turn to AttendenceStudentActivity (Line 135)
+//                System.out.println(response);
                 if (response.equals("Done")) {
                     AttendanceStudentView.OnCheckattendanceResult(1);
                 } else {

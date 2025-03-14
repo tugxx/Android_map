@@ -49,60 +49,61 @@ public class ForgotPassActivity extends AppCompatActivity implements IForgotPass
 
         FirebaseApp.initializeApp(this);
         firebaseAuth = FirebaseAuth.getInstance();
-        checkbtn = (Button) findViewById(R.id.btn_confirm);
-        phoneEt = (EditText) findViewById(R.id.NewPassET);
-        userEt = (EditText) findViewById(R.id.UserEt);
-        btn_contact = (Button) findViewById(R.id.btn_contact_by_phonenumber);
+        checkbtn = (Button) findViewById(R.id.btn_confirm); // Check
+        phoneEt = (EditText) findViewById(R.id.NewPassET); // Phone Number
+        userEt = (EditText) findViewById(R.id.UserEt); // Username
+        btn_contact = (Button) findViewById(R.id.btn_contact_by_phonenumber); // Contact by phone number
 
         checkbtn.setOnClickListener(this);
-//        btn_contact.setOnClickListener(this);
-//        phoneEt.setFocusable(false);
+        btn_contact.setOnClickListener(this);
+        phoneEt.setFocusable(false);
 
         // In progress dialog
         pd = new ProgressDialog(this);
         pd.setTitle("Please wait....");
         pd.setCanceledOnTouchOutside(false);
 
-//        mCallbacks = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
-//            // verify thành công
-//            @Override
-//            public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
-//                OTPCode.setSms_code(phoneAuthCredential.getSmsCode());
-//                signInWithPhoneAuthCredential(phoneAuthCredential);
-//            }
-//
-//
-//            // verify code sai
-//            @Override
-//            public void onVerificationFailed(@NonNull FirebaseException e) {
-//                pd.dismiss();
-//                Toast.makeText(ForgotPassActivity.this, "" + e.getMessage(), Toast.LENGTH_SHORT).show();
-//            }
-//
-//            // chạy xong dialog -> gửi code tới đth
-//            // ẩn phoneLl, hiện codeLl
-//            @Override
-//            public void onCodeSent(@NonNull String verificationId, @NonNull PhoneAuthProvider.ForceResendingToken token) {
-//                super.onCodeSent(verificationId, forceResendingToken);
-//                Log.d(TAG, "onCodeSent: " + verificationId);
-//                mVerificationId = verificationId;
-//                forceResendingToken = token;
-//                pd.dismiss();
-//                OTPCode.setOtp_code(verificationId);
-//                OTPCode.setPhoneNumber(phoneEt.getText().toString());
-//
-//                //change screen to Verify OTP SCreen
-//                Toast.makeText(ForgotPassActivity.this, "Verification code sent.....", Toast.LENGTH_SHORT).show();
-//                Intent intent = new Intent(ForgotPassActivity.this,VerifyOTPActivity.class);
-//                intent.putExtra("username",userEt.getText().toString().trim());
-//                startActivity(intent);
-//
-//                //binding.codeSentDeCription.setText("Please type the verification code we sent... \n" + binding.phoneEt.getText().toString().trim());
-//            }
-//        };
+        mCallbacks = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
+            // verify thành công
+            @Override
+            public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
+                OTPCode.setSms_code(phoneAuthCredential.getSmsCode());
+                signInWithPhoneAuthCredential(phoneAuthCredential);
+            }
+
+            // verify code sai
+            @Override
+            public void onVerificationFailed(@NonNull FirebaseException e) {
+                pd.dismiss();
+                Toast.makeText(ForgotPassActivity.this, "" + e.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+
+            // chạy xong dialog -> gửi code tới đth
+            // ẩn phoneLl, hiện codeLl
+            @Override
+            public void onCodeSent(@NonNull String verificationId, @NonNull PhoneAuthProvider.ForceResendingToken token) {
+                super.onCodeSent(verificationId, forceResendingToken);
+                Log.d(TAG, "onCodeSent: " + verificationId);
+                mVerificationId = verificationId;
+                forceResendingToken = token;
+                pd.dismiss();
+                OTPCode.setOtp_code(verificationId);
+                OTPCode.setPhoneNumber(phoneEt.getText().toString());
+
+                //change screen to Verify OTP SCreen
+                Toast.makeText(ForgotPassActivity.this, "Verification code sent.....", Toast.LENGTH_SHORT).show();
+                // --> Turn to VerifyOTPActivity
+                Intent intent = new Intent(ForgotPassActivity.this,VerifyOTPActivity.class);
+                intent.putExtra("username",userEt.getText().toString().trim());
+                startActivity(intent);
+
+                //binding.codeSentDeCription.setText("Please type the verification code we sent... \n" + binding.phoneEt.getText().toString().trim());
+            }
+        };
     }
 
     private void startPhoneNumberVerification(String phone) { // gửi mã xác thực
+//        System.out.println("ForgotPassActivity + startPhoneNumberVerification");
         pd.setMessage("Verifying Phone Number");
         pd.show();
 
@@ -114,18 +115,14 @@ public class ForgotPassActivity extends AppCompatActivity implements IForgotPass
                         .setCallbacks(mCallbacks)
                         .setForceResendingToken(forceResendingToken)     // ForceResendingToken from callbacks
                         .build();
-
-        PhoneAuthProvider.verifyPhoneNumber(options);
-
+        PhoneAuthProvider.verifyPhoneNumber(options); // Connect to Firebase
     }
 
     private void verifyPhoneNumberWithCode(String verificationId, String code) { // Hàm verify code nhận được
         pd.setMessage("Verifying code");
         pd.show();
-
         PhoneAuthCredential credential = PhoneAuthProvider.getCredential(verificationId, code);
         signInWithPhoneAuthCredential(credential);
-
     }
 
     private void signInWithPhoneAuthCredential(PhoneAuthCredential credential) { // hàm  kiểm tra code và login vào
@@ -133,24 +130,19 @@ public class ForgotPassActivity extends AppCompatActivity implements IForgotPass
         firebaseAuth.signInWithCredential(credential)
                 .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
                     @Override
-                    public void onSuccess(AuthResult authResult) {
-                        //Sucessfully
+                    public void onSuccess(AuthResult authResult) { // Sucessfully
                         pd.dismiss();
                         String phone = firebaseAuth.getCurrentUser().getPhoneNumber();
                         Toast.makeText(ForgotPassActivity.this, "Logged In as", Toast.LENGTH_SHORT).show();
-
                     }
-
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
-                    public void onFailure(@NonNull Exception e) {
-                        // failure
+                    public void onFailure(@NonNull Exception e) { // failure
                         pd.dismiss();
                         Toast.makeText(ForgotPassActivity.this, "" + e.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 });
-
     }
 
     @Override
@@ -162,36 +154,42 @@ public class ForgotPassActivity extends AppCompatActivity implements IForgotPass
         }
         else
         {
+            userEt.setFocusable(false);
             phoneEt.setText("+84" + student_phone);
             checkbtn.setText("Continue");
         }
     }
+
     @Override
     public void onClick(View v) {
-        if (v.getId() == R.id.btn_confirm) {
-            if (checkbtn.getText().toString().equals("Check")) {
-                String user = userEt.getText().toString();
+        if (v.getId() == R.id.btn_confirm) { // press Check button
+//            System.out.println("ForgotPassActivity + onClick + press Check button");
+            if (checkbtn.getText().toString().equals("Check")) { //
+                String user = userEt.getText().toString().trim();
                 if (user.equals("")) {
                     Toast.makeText(ForgotPassActivity.this, "Username not Blank!", Toast.LENGTH_SHORT).show();
                     return;
                 } else {
-                    forgotPassPresenter.checkUsername(user, this);
+                    forgotPassPresenter.checkUsername(user, this); // --> Turn to forgotPassPresenter (Line 24)
                 }
             } else {
                 String phone = phoneEt.getText().toString().trim();
                 String username = userEt.getText().toString().trim();
-                if (TextUtils.isEmpty(phone)) {
+                if (TextUtils.isEmpty(phone)) { // Check if Phone number empty
                     Toast.makeText(ForgotPassActivity.this, "Please enter phone number ...", Toast.LENGTH_SHORT).show();
                 } else {
-                    startPhoneNumberVerification(phone);
+//                    System.out.println("ForgotPassActivity + onClick + "+userEt.getText().toString().trim());
+                    // startPhoneNumberVerification(phone); // Turn to startPhoneNumberVerification (Line 105) Call SMS (Not working, need to enable billing in firebase)
+                    Intent intent = new Intent(ForgotPassActivity.this,ChangePassActivity.class); // --> Turn to ChangePassActivity
+                    intent.putExtra("username",userEt.getText().toString().trim());
+                    startActivity(intent);
                 }
             }
-        } else if (v.getId() == R.id.btn_contact_by_phonenumber) {
+        } else if (v.getId() == R.id.btn_contact_by_phonenumber) { // press Contact by phone number button
+            // --> Turn to ForgotPasswordActivity
             startActivity(new Intent(ForgotPassActivity.this, ForgotPasswordActivity.class));
             finish();
         }
     }
-
-
 
 }

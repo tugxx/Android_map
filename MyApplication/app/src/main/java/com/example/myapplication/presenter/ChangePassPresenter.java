@@ -14,7 +14,7 @@ import com.example.myapplication.model.IProfileStudentModel;
 import com.example.myapplication.view.IChangePassView;
 import com.example.myapplication.view.IProfileStudentView;
 
-public class ChangePassPresenter extends AppCompatActivity implements IChangePassPresenter{
+public class ChangePassPresenter extends AppCompatActivity implements IChangePassPresenter {
     IChangePassModel iChangePassModel;
     IChangePassView iChangePassView;
 
@@ -37,18 +37,14 @@ public class ChangePassPresenter extends AppCompatActivity implements IChangePas
     @Override
     public void checkpass(String password, IChangePassView iChangePassView) {
         iChangePassModel = new ChangePassModel(password, iChangePassView);
-
-
     }
 
     @Override
     public void changePassword(String username, String newPassword) {
         iChangePassModel = new ChangePassModel(newPassword, iChangePassView);
-        iChangePassModel.changePass(newPassword,username,iChangePassView);
+        iChangePassModel.changePass(newPassword,username,iChangePassView); // --> Turn to ChangePassModel (Line 33)
     }
 
     @Override
-    public void responseChangePassword(String message) {
-
-    }
+    public void responseChangePassword(String message) {}
 }

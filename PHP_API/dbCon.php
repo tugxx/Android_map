@@ -112,4 +112,32 @@
     		return $this->student_id;
   		}
 	}
+
+	class Schedule {
+		function __construct($s_id,  $s_name,  $s_tstart,  $s_tend, $s_daybegin,  $s_dayend,
+         $student_id,  $s_location,  $teacher_id){
+			$this->s_id = $s_id;
+			$this->s_name  =$s_name;
+			$this->s_tstart = $s_tstart;
+			$this->s_tend = $s_tend;
+         	$this->s_daybegin = $s_daybegin;
+			$this->s_dayend = $s_dayend;
+         	$this->student_id = $student_id;
+         	$this->s_location = $s_location;
+         	$this->teacher_id = $teacher_id;
+		}
+	}
+
+	class Student{
+		function __construct($student_id, $student_name, $student_birth,$student_gender,$student_mail,$student_phone,$student_image,$status){
+			$this->id = $student_id;
+			$this->fname  =$student_name;
+			$this->birth = $student_birth;
+			$this->gender = $student_gender;
+            $this->mail = $student_mail;
+			$this->phone = $student_phone;
+            $this->image = $student_image;
+            $this->status = $status;
+		}
+	}
 ?>

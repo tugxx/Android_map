@@ -42,15 +42,17 @@ public class StudentScheduleActivity extends AppCompatActivity implements ISched
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_schedule_student);
-        AnhXa();
-        System.out.println("StudentScheduleActivity + onCreate");
-        LoadScheduleForStudent(); // Still in StudentScheduleActivity
-        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        AnhXa(); // Turn to line 79
+        LoadScheduleForStudent(); // Turn to line 72
+
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() { // Done
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                // --> Turn to ScheduleStudentAdapterActivity (Line 39)
                 ScheduleModel scheduleModel = (ScheduleModel) scheduleStudentAdapterActivity.getItem(position);
+
                 //Do in Click Class
-                Intent intent = new Intent(view.getContext() , ScheduleDetailStudentActivity.class);
+                Intent intent = new Intent(view.getContext() , ScheduleDetailStudentActivity.class); // --> Turn to ScheduleDetailStudentActivity
                 intent.putExtra("SCHEDULE_ID", scheduleModel.getS_id());
                 intent.putExtra("SCHEDULE_NAME", scheduleModel.getS_name());
                 intent.putExtra("SCHEDULE_TEACHER", scheduleModel.getTeacher_id());
@@ -62,19 +64,20 @@ public class StudentScheduleActivity extends AppCompatActivity implements ISched
                 startActivity(intent);
             }
         });
-        img_btn_back.setOnClickListener(this);
+
+        img_btn_back.setOnClickListener(this); // Back <
     }
 
     public void LoadScheduleForStudent() {
         Intent intent = getIntent();
         id_student =intent.getStringExtra("ID_STUDENT");
 //        System.out.println("StudentScheduleActivity + LoadScheduleForStudent");
-        iScheduleStudentView.doLoadListSchedule(id_student, this);
+        iScheduleStudentView.doLoadListSchedule(id_student, this); // --> Turn to ScheduleStudentPresenter (Line 25)
     }
 
     public void AnhXa() {
-        list = findViewById(R.id.recyclerView);
-        img_btn_back = (ImageView) findViewById(R.id.img_btn_back);
+        list = findViewById(R.id.recyclerView); // List View
+        img_btn_back = (ImageView) findViewById(R.id.img_btn_back); // Back <
     }
 
     @Override
@@ -85,11 +88,13 @@ public class StudentScheduleActivity extends AppCompatActivity implements ISched
             startActivity(intent);
             finish();
         }
-
     }
 
     @Override
     public void onListScheduleStudentResult(ArrayList<ScheduleModel> List_Schedule) {
+        //        System.out.println("StudentScheduleActivity + onListScheduleStudentResult");
+
+        // Change the ListView using getView in ScheduleStudentAdapterActivity (Line 49)
         scheduleStudentAdapterActivity = new ScheduleStudentAdapterActivity(this,List_Schedule);
         list.setAdapter(scheduleStudentAdapterActivity);
     }

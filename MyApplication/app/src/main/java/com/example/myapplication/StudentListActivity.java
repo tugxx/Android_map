@@ -26,7 +26,7 @@ public class StudentListActivity extends AppCompatActivity implements IStudentLi
     private String class_id;
     //MVP
     private ListView list;
-    private String id_student,class_name;
+    private String id_student, class_name;
     private IStudentListPresenter iStudentListPresenter = new StudentListPresenter(this);
     ArrayList<StudentModel> List_Student;
     StudentAdapter studentAdapter;
@@ -35,7 +35,7 @@ public class StudentListActivity extends AppCompatActivity implements IStudentLi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_studentlist);
         AnhXa();
-        LoadClassForStudent();
+        LoadClassForStudent(); // Turn to line 68 (Done)
 
         // Funcion on Click list view
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -43,7 +43,7 @@ public class StudentListActivity extends AppCompatActivity implements IStudentLi
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 StudentModel student_model = (StudentModel) studentAdapter.getItem(position);
                 //Do in Click Class
-                Intent intent = new Intent(view.getContext() , DeatailStudentActivity.class);
+                Intent intent = new Intent(view.getContext(), DetailStudentActivity.class); // --> Turn to DetailStudentActivity
                 intent.putExtra("STUDENT_ID", student_model.getStudent_id());
                 intent.putExtra("STUDENT_NAME", student_model.getStudent_name());
                 intent.putExtra("STUDENT_EMAIL", student_model.getStudent_mail());
@@ -60,40 +60,32 @@ public class StudentListActivity extends AppCompatActivity implements IStudentLi
         img_btn_back.setOnClickListener(this);
     }
 
-    public void LoadClassForStudent() {
-        Intent intent = getIntent();
-        class_id =intent.getStringExtra("ID_CLASS");
-        id_student =intent.getStringExtra("ID_STUDENT");
-        iStudentListPresenter.doLoadListStudent(id_student, this);
-    }
     public void AnhXa() {
         list = findViewById(R.id.recyclerviewStudent);
         img_btn_back = (ImageView) findViewById(R.id.img_btn_back);
     }
 
+    public void LoadClassForStudent() {
+        Intent intent = getIntent();
+        class_id =intent.getStringExtra("ID_CLASS");
+        id_student =intent.getStringExtra("ID_STUDENT");
+        iStudentListPresenter.doLoadListStudent(id_student, this); // --> Turn to StudentListPresenter
+    }
+
     @Override
     public void onClick(View v) {
-//        switch (v.getId()) {
-//            case R.id.img_btn_back:
-//                Intent intent1 = new Intent(StudentListActivity.this, StudentActivity.class);
-//                intent1.putExtra("ID_STUDENT", id_student);
-//                startActivity(intent1);
-//                finish();
-//                break;
-//        }
-
         if (v.getId() == R.id.img_btn_back) {
             Intent intent1 = new Intent(StudentListActivity.this, StudentActivity.class);
             intent1.putExtra("ID_STUDENT", id_student);
             startActivity(intent1);
             finish();
         }
-
     }
 
     @Override
     public void onListClassStudentResult(ArrayList<StudentModel> List_Student) {
-        studentAdapter = new StudentAdapter(this,List_Student);
+        // Với Adapter, tìm hàm getView
+        studentAdapter = new StudentAdapter(this,List_Student); // --> Turn to StudentAdapter (Line 52)
         list.setAdapter(studentAdapter);
     }
 }

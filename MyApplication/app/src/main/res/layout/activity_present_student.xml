@@ -57,7 +57,7 @@
     <EditText
         android:id="@+id/txt_search_class_student"
         android:layout_width="305dp"
-        android:layout_height="37dp"
+        android:layout_height="40dp"
         android:layout_marginTop="10dp"
         android:ems="10"
         android:fontFamily="@font/poppins"
@@ -92,6 +92,7 @@
         app:backgroundTintMode="screen"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView12" />
+
     <ListView
         android:id="@+id/list_class_for_student"
         android:layout_width="401dp"

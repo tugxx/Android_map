@@ -22,10 +22,8 @@ import com.example.myapplication.view.ILoginView;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import androidx.core.graphics.drawable.DrawableCompat;
 
-//import androidx.core.graphics.drawable.DrawableCompat;
-
-// ILoginView
 public class LoginActivity extends AppCompatActivity implements ILoginView, View.OnClickListener {
     private EditText edt_user,edt_password;
     private Button btn_login;
@@ -42,40 +40,51 @@ public class LoginActivity extends AppCompatActivity implements ILoginView, View
 //        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN); // fullscreen mode
         setContentView(R.layout.activity_login);
         sharedPreferences = getSharedPreferences("DataLogin", MODE_PRIVATE);
-        mapping();
+        mapping(); // Line 59
 
-        edt_user.setText(sharedPreferences.getString("email",""));
-        edt_password.setText(sharedPreferences.getString("password",""));
+        // Set text (rarely use)
+        edt_user.setText(sharedPreferences.getString("email","student"));
+        edt_password.setText(sharedPreferences.getString("password","1234"));
         cb_remeberme.setChecked(sharedPreferences.getBoolean("checked",false));
 
-        // ILoginPresenter --> LoginPresenter
-        loginPresenter = new LoginPresenter(this);
+        // static type: ILoginPresenter, dynamic type: LoginPresenter
+        loginPresenter = new LoginPresenter(this); // ILoginPresenter --> LoginPresenter (Line 16)
 
-        //Set Listener
+        //Set button Listener
         btn_login.setOnClickListener(this); // Done
         btn_text_forgot.setOnClickListener(this); // Half Done
         ic_eye.setOnClickListener(this); // Done
+    }
+
+    public void mapping() {
+        edt_user = (EditText) findViewById(R.id.edt_username); // Username
+        edt_password = (EditText) findViewById((R.id.edt_password)); // Password
+        btn_login = (Button) findViewById(R.id.btn_login); // Login
+        btn_text_forgot = (TextView) findViewById(R.id.btn_text_forgot); // Forgot Password
+        cb_remeberme = (CheckBox) findViewById(R.id.cb_remeberme); // Remember me
+        ic_eye = (ImageView) findViewById(R.id.ic_eye_new); // Show Password
     }
 
     @Override
     public void onClick(View v) {
         // press login button
         if (v.getId() == R.id.btn_login) {
+            // Turn to CheckLogin() Line 150
             if (CheckLogin() == 1) { // either the username or password field is empty
-//                System.out.println("hello");
+//                System.out.println("LoginActivity Line 73");
                 Toast.makeText(this, "Username hoặc Password trống ! Vui lòng nhập lại", Toast.LENGTH_SHORT).show();
             } else if (CheckLogin() == 2) { // username contains special characters
-//                System.out.println("hello");
+//                System.out.println("LoginActivity Line 76");
                 Toast.makeText(this, "Username chứa kí tự đặc biệt ! Vui lòng nhập lại", Toast.LENGTH_SHORT).show();
             } else { // validation passed
-//                System.out.println("LoginActivity - onClick -- validation passed");
-                // --> Turn to LoginPresenter
+//                System.out.println("LoginActivity + onClick + validation passed");
+                // --> Turn to LoginPresenter (Line 24)
                 loginPresenter.doLogin(edt_user.getText().toString().trim(), edt_password.getText().toString().trim(), this);
             }
 
         // press Forgot Password Button
         } else if (v.getId() == R.id.btn_text_forgot) {
-            System.out.println("LoginActivity - onClick -- Forgot Password");
+//            System.out.println("LoginActivity - onClick -- Forgot Password");
             // --> Turn to ForgotPassActivity
             startActivity(new Intent(LoginActivity.this, ForgotPassActivity.class));
 
@@ -96,6 +105,7 @@ public class LoginActivity extends AppCompatActivity implements ILoginView, View
         if (role.equals("1")) { // Admin
             handlePreferences();
             // --> Turn to AdminActivity
+            System.out.println("LoginActivity + onLoginResult + Admin");
             startActivity(new Intent(LoginActivity.this, AdminActivity.class));
             finish();
         } else if (role.equals("2")) { // Teacher
@@ -119,15 +129,6 @@ public class LoginActivity extends AppCompatActivity implements ILoginView, View
     @Override
     protected void onDestroy() {
         super.onDestroy();
-    }
-
-    public void mapping() {
-        edt_user = (EditText) findViewById(R.id.edt_oldpassword);
-        edt_password = (EditText) findViewById((R.id.edt_password));
-        btn_login = (Button) findViewById(R.id.btn_login);
-        btn_text_forgot = (TextView) findViewById(R.id.btn_text_forgot);
-        cb_remeberme = (CheckBox) findViewById(R.id.cb_remeberme);
-        ic_eye = (ImageView) findViewById(R.id.ic_eye_new);
     }
 
     protected void handlePreferences() { // Remember me button

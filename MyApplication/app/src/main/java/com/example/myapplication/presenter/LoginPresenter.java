@@ -17,12 +17,12 @@ public class LoginPresenter extends AppCompatActivity implements ILoginPresenter
         this.iLoginView = iLoginView;
         handler = new Handler(Looper.getMainLooper());
     }
-    private void initUser(String usern, String pass, ILoginView loginView){
-        userlogin = new UserModelModel(usern,pass, loginView); // IUserModel --> UserModelModel
+    private void initUser(String user, String pass, ILoginView loginView){
+        userlogin = new UserModelModel(user, pass, loginView); // IUserModel --> UserModelModel
     }
     @Override
     public void doLogin(String user, String password, ILoginView loginView) {
-//        System.out.println("LoginPresenter - doLogin");
+//        System.out.println("LoginPresenter Line 25");
         initUser(user ,password, loginView);
         userlogin.checkUserValidity(loginView); // --> Turn to UserModelModel
     }

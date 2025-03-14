@@ -58,7 +58,7 @@ public class ProfileStudentModel extends AppCompatActivity implements IProfileSt
                     try {
                         JSONObject object = new JSONObject(response);
                         if ((object.getString("student_id").trim()).equals(ID)) {
-                            // --> Turn to ProfileStudentActivity
+                            // --> Turn to ProfileStudentActivity (Line 170)
                             iProfileStudentView.showInforStudent(object.getString("student_id").trim(),
                                     object.getString("student_name").trim(),
                                     object.getString("student_birth").trim(),
@@ -144,13 +144,14 @@ public class ProfileStudentModel extends AppCompatActivity implements IProfileSt
             @Override
             public void onResponse(String response) {
                 if (response.equals("Error")) {
-                    System.out.println("error");
+//                    System.out.println("error");
                     return;
                 } else {
                     try {
                         JSONObject object = new JSONObject(response);
                         if ((object.getString("student_id").trim()).equals(id)) {
-                            // --> Turn to ProfileStudentActivity
+//                            System.out.println("ProfileStudentModel + checkInforValidityMain" + object.getString("student_name").trim());
+                            // --> Turn to StudentActivity (Line 142)
                             iProfileStudentView.showInforStudentMain(object.getString("student_id").trim(),
                                     object.getString("student_name").trim(),
                                     object.getString("student_image").trim());

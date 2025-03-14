@@ -69,12 +69,13 @@ public class ClassAdapterForStudentActivity extends BaseAdapter implements Filte
             @Override
             protected FilterResults performFiltering(CharSequence constraint) {
                 String strSearch  = constraint.toString();
-                if(strSearch.isEmpty()){
+//                System.out.println("ClassAdapterForStudentActivity + getFilter + " + strSearch);
+                if (strSearch.isEmpty()) {
                     listClassS = listClassSOld;
-                }else{
+                } else {
                     List<ClassModel> list = new ArrayList<>();
                     for(ClassModel classS: listClassSOld){
-                        //Chuyen doi tat ca thanh chu thuong
+                        // Chuyen doi tat ca thanh chu thuong
                         if(classS.getClass_name().toLowerCase().contains(strSearch.toLowerCase())){
                             list.add(classS);
                         }

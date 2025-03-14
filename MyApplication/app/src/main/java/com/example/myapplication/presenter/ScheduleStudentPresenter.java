@@ -25,6 +25,6 @@ public class ScheduleStudentPresenter implements IScheduleStudentPresenter {
     public void doLoadListSchedule(String id, IScheduleStudentView context) {
         iSchedule = new ScheduleModel(id, context);
 //        System.out.println("ScheduleStudentPresenter + doLoadListSchedule");
-        iSchedule.getDataScheduleForStudent(id, context);
+        iSchedule.getDataScheduleForStudent(id, context); // --> Turn to ScheduleModel (Line 138)
     }
 }
