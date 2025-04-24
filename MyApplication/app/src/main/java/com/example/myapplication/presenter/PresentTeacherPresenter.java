@@ -23,10 +23,11 @@ public class PresentTeacherPresenter implements IPresentTeacherPresenter {
         this.iPresentTeacherView = iPresentTeacherView;
         handler = new Handler(Looper.getMainLooper());
     }
+
     @Override
     public void doLoadListClass(String id, IPresentTeacherView context) {
         iClass = new ClassModel(id, context);
-        iClass.getDataClassForIDTeacher(id, context);
+        iClass.getDataClassForIDTeacher(id, context); // --> Turn to ClassModel (Line 228)
     }
 
     public PresentTeacherPresenter(IPresentTimeTeacherView iPresentTimeTeacherView) {

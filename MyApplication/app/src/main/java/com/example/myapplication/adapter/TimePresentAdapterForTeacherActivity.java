@@ -46,10 +46,13 @@ public class TimePresentAdapterForTeacherActivity extends BaseAdapter {
         View viewClass;
         if (convertView == null) {
             viewClass = View.inflate(parent.getContext(), R.layout.layoutcustom_presentteacher, null);
-        } else viewClass = convertView;
+        } else {
+            viewClass = convertView;
+        }
         PresentTeacherModel Time_list = (PresentTeacherModel) getItem(position);
         ((TextView) viewClass.findViewById(R.id.text_name_id_student)).setText(String.format(Time_list.getStudent_name() + " - " + Time_list.getStudent_id()));
         ((TextView) viewClass.findViewById(R.id.text_time_present)).setText(String.format(Time_list.getAttendancetime()));
+
         if (Time_list.getStatusAttendance().equals("On time"))
             ((TextView) viewClass.findViewById(R.id.text_stutus_attendance)).setText(String.format(Time_list.getStatusAttendance()));
         else {

@@ -56,7 +56,6 @@ public class StudentActivity extends AppCompatActivity implements IProfileStuden
     public void mapping() {
         img_logout_student = (ImageView) findViewById(R.id.img_logout); // logout
         btn_attendence_student = (Button) findViewById(R.id.btn_attendence_student); // attendence
-//        btn_information_student = (Button) findViewById(R.id.btn_information_teacher);
         btn_information_student = (Button) findViewById(R.id.btn_information_student); // information
         btn_present_student = (Button) findViewById(R.id.btn_present_student); // present
         btn_schedule_student = (Button) findViewById(R.id.btn_schedule_student); // Schedule
@@ -97,12 +96,12 @@ public class StudentActivity extends AppCompatActivity implements IProfileStuden
             studentclasslist.putExtra("ID_STUDENT", id_student);
             startActivity(studentclasslist);
 
-        } else if (v.getId() == R.id.btn_studentlist_student) { // Student list
+        } else if (v.getId() == R.id.btn_studentlist_student) { // Student list (Done)
             Intent studentlist = new Intent(this, StudentListActivity.class); // --> Turn to StudentListActivity (Done)
             studentlist.putExtra("ID_STUDENT", id_student);
             startActivity(studentlist);
 
-        } else if (v.getId() == R.id.img_logout) { // Logout
+        } else if (v.getId() == R.id.img_logout) { // Logout (Done)
             AlertDialog.Builder builder = new AlertDialog.Builder(StudentActivity.this);
             builder.setTitle("LOGOUT ACCOUNT")
                     .setMessage("You sure, that you want to logout?")
@@ -121,7 +120,7 @@ public class StudentActivity extends AppCompatActivity implements IProfileStuden
             AlertDialog alert11 = builder.create();
             alert11.show();
 
-        } else if (v.getId() == R.id.btn_about) { // Version App
+        } else if (v.getId() == R.id.btn_about) { // Version App (Done)
             Intent about = new Intent(this, AboutActivity.class); // --> Turn to AboutActivity
             about.putExtra("ID_STUDENT", id_student);   // Truyền ID_STUDENT
             startActivity(about);

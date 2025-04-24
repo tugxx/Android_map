@@ -17,9 +17,10 @@ public class TScheduleTeacherPresenter implements ITScheduleTeacherPresenter {
         this.itScheduleTeacherView = itScheduleTeacherView;
         handler = new Handler(Looper.getMainLooper());
     }
+
     @Override
     public void doLoadListSchedule(String id, ITScheduleTeacherView context) {
         iSchedule = new ScheduleModel(id, context);
-        iSchedule.getDataScheduleForStudent(id, context);
+        iSchedule.getDataScheduleForStudent(id, context); /// --> Turn to ScheduleModel (Line 191)
     }
 }

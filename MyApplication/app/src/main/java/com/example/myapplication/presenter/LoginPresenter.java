@@ -24,7 +24,7 @@ public class LoginPresenter extends AppCompatActivity implements ILoginPresenter
     public void doLogin(String user, String password, ILoginView loginView) {
 //        System.out.println("LoginPresenter Line 25");
         initUser(user ,password, loginView);
-        userlogin.checkUserValidity(loginView); // --> Turn to UserModelModel
+        userlogin.checkUserValidity(loginView); // --> Turn to UserModelModel (line 66)
     }
 
 

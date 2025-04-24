@@ -70,11 +70,11 @@ public class ScheduleStudentAdapterActivity extends BaseAdapter implements Filte
 
         // Find and set TextViews (Connect with layoutcustom_recyclerview_schedule)
         TextView nameView = viewClass.findViewById(R.id.tv_Schedule_Name);
-        TextView timeView = viewClass.findViewById(R.id.tv_Schedule_Time);
+//        TextView timeView = viewClass.findViewById(R.id.tv_Schedule_Time);
         String nameText = schedule_list.getS_name();
         nameView.setText(nameText.trim());
-        String timeText = schedule_list.getS_tstart() + " - " + schedule_list.getS_tend();
-        timeView.setText(timeText.trim());
+//        String timeText = schedule_list.getS_tstart() + " - " + schedule_list.getS_tend();
+//        timeView.setText(timeText.trim());
 
 //        System.out.println("ScheduleStudentAdapterActivity + getView + "+schedule_list.getS_name());
 //        System.out.println("ScheduleStudentAdapterActivity + getView + "+timeText);

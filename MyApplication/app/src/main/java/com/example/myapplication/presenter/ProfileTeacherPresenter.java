@@ -22,7 +22,7 @@ public class ProfileTeacherPresenter extends AppCompatActivity implements IProfi
     @Override
     public void getIDTeacher(String ID, IProfileTeacherView iProfileTeacherView) {
         iProfileTeacherModel = new ProfileTeacherModel(ID,iProfileTeacherView);
-        iProfileTeacherModel.checkInforValidity(ID, iProfileTeacherView);
+        iProfileTeacherModel.checkInforValidity(ID, iProfileTeacherView); /// --> Turn to ProfileTeacherModel (Line 49)
     }
 
     public void checkUpdate (String teacher_id, String teacher_name,String teacher_birth,String teacher_gender,String teacher_mail,String teacher_phone, String teacher_image, IProfileTeacherView iProfileTeacherView)
@@ -33,7 +33,8 @@ public class ProfileTeacherPresenter extends AppCompatActivity implements IProfi
 
     @Override
     public void getIDMainTeacher(String id_teacher, TeacherActivity teacherActivity) {
+//        System.out.println("ProfileTeacherPresenter + getIDMainTeacher");
         iProfileTeacherModel = new ProfileTeacherModel(id_teacher,iProfileTeacherView);
-        iProfileTeacherModel.checkInforValidityMain(id_teacher, iProfileTeacherView);
+        iProfileTeacherModel.checkInforValidityMain(id_teacher, iProfileTeacherView); // --> Turn to ProfileTeacherModel (Line 140)
     }
 }

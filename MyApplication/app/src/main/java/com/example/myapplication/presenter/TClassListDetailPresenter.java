@@ -17,9 +17,10 @@ public class TClassListDetailPresenter implements ITClassListDetailPresenter {
         this.itClassListDetailView = itClassListDetailView;
         handler = new Handler(Looper.getMainLooper());
     }
+
     @Override
     public void doLoadListStudent(String id, ITClassListDetailView context) {
         iStudent = new StudentModel(id, context);
-        iStudent.getDataStudentForIDClass(id, context);
+        iStudent.getDataStudentForIDClass(id, context); /// --> Turn to StudentModel (Line 193)
     }
 }

@@ -151,7 +151,7 @@ public class StudentModel implements IStudentModel, Serializable {
                             JSONObject object = jsonArray.getJSONObject(i);
                             student_id = object.getString("id").trim();
                             student_name = object.getString("fname").trim();
-                            System.out.println(student_name + ", " + object.getString("fname").trim());
+//                            System.out.println(student_name + ", " + object.getString("fname").trim());
                             student_birth = object.getString("birth").trim();
                             student_gender = object.getString("gender").trim();
                             student_mail = object.getString("mail").trim();
@@ -212,12 +212,13 @@ public class StudentModel implements IStudentModel, Serializable {
                             student_mail = object.getString("mail").trim();
                             student_phone = object.getString("phone").trim();
                             student_image = object.getString("image").trim();
-                            status = object.getInt("status");
+//                            status = object.getInt("status");
+                            status = 0;
                             StudentModel student_data = new StudentModel(student_id, student_name,student_birth,
                                     student_gender,student_mail, student_phone, student_image,status);
                             ListStudent.add(student_data);
                         }
-                        itClassListDetailView.onListClassStudentResult(ListStudent);
+                        itClassListDetailView.onListClassStudentResult(ListStudent); /// --> Turn to TclassListDetailActivity (Line 99)
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }

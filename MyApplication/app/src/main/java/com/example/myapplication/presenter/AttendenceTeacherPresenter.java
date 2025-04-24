@@ -18,9 +18,10 @@ public class AttendenceTeacherPresenter extends AppCompatActivity implements IAt
         this.iAttendenceTeacherView = iAttendenceTeacherView;
         handler = new Handler(Looper.getMainLooper());
     }
+
     @Override
     public void doLoadListClass(String id, IAttendenceTeacherView context) {
         iClass = new ClassModel(id, context);
-        iClass.getDataClassForIDTeacher(id, context);
+        iClass.getDataClassForIDTeacher(id, context); // --> Turn to ClassModel (Line 129)
     }
 }

@@ -20,12 +20,12 @@
 	}
 	
 	class dbclass{
-		function __construct($class_id, $class_name, $teacher_id, $class_time, $totalstudent) {
+		function __construct($class_id, $class_name, $teacher_id, $class_time, $total_student) {
 			$this-> class_id = $class_id;
 			$this-> class_name  =$class_name;
 			$this-> teacher_id = $teacher_id;
 			$this-> class_time = $class_time;
-			$this-> totalstudent = $totalstudent;			
+			$this-> total_student = $total_student;			
 		}	
 	}
 	
@@ -138,6 +138,14 @@
 			$this->phone = $student_phone;
             $this->image = $student_image;
             $this->status = $status;
+		}
+	}
+
+	class classS{
+		function __construct($class_id, $class_name, $class_total){
+			$this->id = $class_id;
+			$this->name = $class_name;
+			$this->total_student = $class_total;
 		}
 	}
 ?>

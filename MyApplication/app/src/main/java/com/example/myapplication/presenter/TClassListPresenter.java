@@ -21,6 +21,6 @@ public class TClassListPresenter implements ITClassListPresenter{
     @Override
     public void doLoadListTeacher(String id, ITClassListView context) {
         iClass = new ClassModel(id, context);
-        iClass.getDataClassForIDTeacher2(id, context);
+        iClass.getDataClassForIDTeacher2(id, context); /// --> Turn to ClassModel (Line 316)
     }
 }

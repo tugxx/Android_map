@@ -39,30 +39,25 @@ public class TClassListActivity extends AppCompatActivity implements ITClassList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_classlist_teacher);
-        AnhXa();
-        LoadClassForStudent();
+        AnhXa(); /// Turn to line 63
+        LoadClassForStudent(); /// Turn to line 68
 
         //bắt sự kiện click
         img_btn_back.setOnClickListener(this);
+
         // Funcion on Click list view
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 ClassModel class_model = (ClassModel) classListAdapterForTeacherActivity.getItem(position);
                 //Do in Click Class
-                Intent intent = new Intent(view.getContext() , TclassListDetailActivity.class);
+                Intent intent = new Intent(view.getContext() , TclassListDetailActivity.class); /// --> Turn to TclassListDetailActivity
                 intent.putExtra("ID_CLASS", class_model.getClass_id());
                 intent.putExtra("CLASS_NAME", class_model.getClass_name());// Truyền ID_Class
                 intent.putExtra("ID_TEACHER",teacher_id);
                 startActivity(intent);
             }
         });
-
-    }
-    public void LoadClassForStudent() {
-        Intent intent = getIntent();
-        teacher_id =intent.getStringExtra("ID_TEACHER");
-        TClassListPresenter.doLoadListTeacher(teacher_id, this);
     }
 
     public void AnhXa() {
@@ -70,19 +65,16 @@ public class TClassListActivity extends AppCompatActivity implements ITClassList
         img_btn_back = (ImageView) findViewById(R.id.img_btn_back_teacher);
     }
 
+    public void LoadClassForStudent() {
+        Intent intent = getIntent();
+        teacher_id =intent.getStringExtra("ID_TEACHER");
+        TClassListPresenter.doLoadListTeacher(teacher_id, this); /// --> Turn to TClassListPresenter (Line 22)
+    }
+
     @Override
     public void onClick(View v) {
-//        switch (v.getId()) {
-//            case R.id.img_btn_back_teacher:
-//                Intent intent = new Intent(this, TeacherActivity.class);
-//                intent.putExtra("ID_TEACHER", teacher_id);
-//                startActivity(intent);
-//                finish();
-//                break;
-//        }
-
-        if (v.getId() == R.id.img_btn_back_teacher) {
-            Intent intent = new Intent(this, TeacherActivity.class);
+        if (v.getId() == R.id.img_btn_back_teacher) { // Back <
+            Intent intent = new Intent(this, TeacherActivity.class); /// --> Turn to TeacherActivity
             intent.putExtra("ID_TEACHER", teacher_id);
             startActivity(intent);
             finish();
@@ -93,6 +85,6 @@ public class TClassListActivity extends AppCompatActivity implements ITClassList
     @Override
     public void onListClassTeacherResult(ArrayList<ClassModel> List_Class) {
         classListAdapterForTeacherActivity = new ClassListAdapterForTeacherActivity(List_Class);
-        list.setAdapter(classListAdapterForTeacherActivity);
+        list.setAdapter(classListAdapterForTeacherActivity); /// --> Turn to ClassListAdapterForTeacherActivity (Line 42)
     }
 }

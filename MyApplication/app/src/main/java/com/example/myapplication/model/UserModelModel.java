@@ -66,17 +66,20 @@ public class UserModelModel extends AppCompatActivity implements IUserModel {
     public void checkUserValidity(ILoginView context) {
         // use IPConfigModel class
         String url = "http://" + ipConfigModel.getIpconfig() + "/PHP_API/getuser.php";
-
-//        System.out.println("UserModelModel Line 70 "+url);
+        System.out.println("UserModelModel Line 70 " + url);
         RequestQueue requestQueue = Volley.newRequestQueue((Context) context);
         // requestQueue.start();
+
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 if (response.equals("Error")) {
+//                    System.out.println("UserModelModel + checkUserValidity + Error");
                     Toast.makeText((Context) loginView, "Account is Error, Please check info again !", Toast.LENGTH_LONG).show();
                 } else {
                     try {
+//                        System.out.println("UserModelModel + checkUserValidity");
+
                         JSONObject object = new JSONObject(response);
                         dbusername = object.getString("username").trim();
                         dbpassword = object.getString("password").trim();
@@ -85,7 +88,6 @@ public class UserModelModel extends AppCompatActivity implements IUserModel {
                         dbstudent_id = object.getString("i_student").trim();
                         dbteacher_id = object.getString("i_teacher").trim();
 
-//                        System.out.println("UserModelModel + checkUserValidity");
                         if (object != null) {
                             // --> Turn to LoginActivity (Line 104)
                             loginView.onLoginResult(dbrole, dbteacher_id, dbstudent_id);
@@ -98,6 +100,7 @@ public class UserModelModel extends AppCompatActivity implements IUserModel {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+                System.out.println("Noooo");
                 Toast.makeText((Context) loginView, error.toString().trim(), Toast.LENGTH_SHORT).show();
             }
         }) {

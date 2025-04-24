@@ -99,12 +99,12 @@ public class ScheduleDetailStudentActivity extends AppCompatActivity implements 
             }
 
         } else { // Người dùng là giáo viên
-            if (v.getId() == R.id.img_btn_home) {
+            if (v.getId() == R.id.img_btn_home) { // Home
                 Intent intent = new Intent(this, TeacherActivity.class); // --> Turn to TeacherActivity
                 intent.putExtra("ID_TEACHER", teacher_id);
                 startActivity(intent);
                 finish();
-            } else if (v.getId() == R.id.img_btn_back) {
+            } else if (v.getId() == R.id.img_btn_back) { // Back <
                 Intent intent1 = new Intent(this, TeacherScheduleActivity.class); // // --> Turn to TeacherScheduleActivity
                 intent1.putExtra("ID_TEACHER", teacher_id);
                 startActivity(intent1);

@@ -61,6 +61,7 @@ public class  AbsentTeacherModel implements IAbsentTeacherModel {
         String url = "http://" + ipConfigModel.getIpconfig() + "/PHP_API/getabsentlist.php";
         RequestQueue requestQueue = Volley.newRequestQueue((Context) context);
         // requestQueue.start();
+
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -77,7 +78,7 @@ public class  AbsentTeacherModel implements IAbsentTeacherModel {
                             AbsentTeacherModel absentTeacher_data = new AbsentTeacherModel(dbstudent_id,dbstudent_name);
                             ListAbsent.add(absentTeacher_data);
                         }
-                        iAbsentTimeTeacherView.onLisTimeTeacherResult(ListAbsent);
+                        iAbsentTimeTeacherView.onLisTimeTeacherResult(ListAbsent); /// --> Turn to AbsentTimeTeacherActivity (Line 93)
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }

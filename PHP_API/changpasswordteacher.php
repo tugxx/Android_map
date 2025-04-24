@@ -8,19 +8,16 @@
 
 		$query2 = (String)"SELECT password from tb_user where i_teacher = $i_teacher";
 		$checkpass = mysqli_query($connect, $query2);
-		while ($row = mysqli_fetch_assoc($checkpass))
-		{
+		while ($row = mysqli_fetch_assoc($checkpass)) {
 			$passwordcu = $row['password'];
 		}
-		if($oldpass == $passwordcu)
-		{
+
+		if($oldpass == $passwordcu) {
 			$query = "UPDATE tb_user tbu SET tbu.oldpass = $oldpass, tbu.password = $password WHERE tbu.i_teacher = $i_teacher and tbu.password = $oldpass";
 			$data = mysqli_query($connect, $query);
 			echo "Done";
-		}
-		else
-		{
+		} else {
 			echo "Fail";
 		}
-	};
+	}
 ?>

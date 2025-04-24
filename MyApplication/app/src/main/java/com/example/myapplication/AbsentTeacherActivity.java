@@ -30,11 +30,11 @@ public class AbsentTeacherActivity extends AppCompatActivity implements IAbsentT
     ImageView img_btn_back;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+//        requestWindowFeature(Window.FEATURE_NO_TITLE);
+//        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_absent_teacher);
         mapping();
-        LoadClassForTeacher();
+        LoadClassForTeacher(); // Turn to line 60
 
         listView_class.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -47,40 +47,32 @@ public class AbsentTeacherActivity extends AppCompatActivity implements IAbsentT
                 startActivity(intent);
             }
         });
-        img_btn_back.setOnClickListener(this);
+
+        img_btn_back.setOnClickListener(this); /// Back <
     }
 
     public void mapping() {
-        editText_search = (EditText) findViewById(R.id.edt_search_class);
-        listView_class = (ListView) findViewById(R.id.list_class);
-        img_btn_back = (ImageView) findViewById(R.id.img_btn_back);
-
+        editText_search = (EditText) findViewById(R.id.edt_search_class); // Search text
+        listView_class = (ListView) findViewById(R.id.list_class); /// List view
+        img_btn_back = (ImageView) findViewById(R.id.img_btn_back); /// Back <
     }
 
     public void LoadClassForTeacher() {
         Intent intent = getIntent();
         teacher_id = intent.getStringExtra("ID_TEACHER");
-        absentTeacherPresenter.doLoadListClass(teacher_id, this);
+        absentTeacherPresenter.doLoadListClass(teacher_id, this); // --> Turn to AbsentTeacherPresenter (Line 28)
     }
 
     @Override
     public void onListClassResult(ArrayList<ClassModel> List_Class) {
-        classListAdapter = new ClassListAdapterForTeacherActivity(List_Class);
+        classListAdapter = new ClassListAdapterForTeacherActivity(List_Class); /// --> Turn to ClassListAdapterForTeacherActivity (Line 42)
         listView_class.setAdapter(classListAdapter);
     }
+
     @Override
     public void onClick(View v) {
-//        switch (v.getId()){
-//            case R.id.img_btn_back:
-//                Intent teacher1 = new Intent(this , TeacherActivity.class);
-//                teacher1.putExtra("ID_TEACHER", teacher_id);  // Truyền ID_TEACHER
-//                startActivity(teacher1);
-//                finish();
-//                break;
-//        }
-
-        if (v.getId() == R.id.img_btn_back) {
-            Intent teacher1 = new Intent(this, TeacherActivity.class);
+        if (v.getId() == R.id.img_btn_back) { // Back <
+            Intent teacher1 = new Intent(this, TeacherActivity.class); /// --> Turn to TeacherActivity
             teacher1.putExtra("ID_TEACHER", teacher_id);  // Passing the teacher ID
             startActivity(teacher1);
             finish();

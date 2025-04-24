@@ -9,6 +9,7 @@ import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -34,6 +35,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class TeacherScheduleActivity extends AppCompatActivity implements ITScheduleTeacherView, View.OnClickListener {
@@ -44,18 +47,21 @@ public class TeacherScheduleActivity extends AppCompatActivity implements ITSche
     ArrayList<ScheduleModel> List_Schedule;
     private ImageView img_btn_back;
     ScheduleStudentAdapterActivity scheduleStudentAdapterActivity;
+    private TextView textView8;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_schedule_teacher);
-        AnhXa();
-        LoadScheduleForTeacher();
+        AnhXa(); /// Turn to line 81
+        LoadScheduleForTeacher(); /// Turn to line 74
+
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 ScheduleModel scheduleModel = (ScheduleModel) scheduleStudentAdapterActivity.getItem(position);
                 //Do in Click Class
-                Intent intent = new Intent(view.getContext() , ScheduleDetailStudentActivity.class);
+                Intent intent = new Intent(view.getContext() , ScheduleDetailStudentActivity.class); /// --> Turn to ScheduleDetailStudentActivity
                 intent.putExtra("SCHEDULE_ID", scheduleModel.getS_id());
                 intent.putExtra("SCHEDULE_NAME", scheduleModel.getS_name());
                 intent.putExtra("SCHEDULE_TEACHER", scheduleModel.getTeacher_id());
@@ -68,32 +74,29 @@ public class TeacherScheduleActivity extends AppCompatActivity implements ITSche
             }
         });
         img_btn_back.setOnClickListener(this);
+
+        LocalDateTime now = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        String formattedTime = now.format(formatter);
+        textView8.setText("Ngày "+formattedTime);
     }
 
     public void LoadScheduleForTeacher() {
         Intent intent = getIntent();
         id_teacher =intent.getStringExtra("ID_TEACHER");
-        itScheduleTeacherPresenter.doLoadListSchedule(id_teacher, this);
+        itScheduleTeacherPresenter.doLoadListSchedule(id_teacher, this); /// --> Turn to TScheduleTeacherPresenter (Line 22)
 
     }
 
     public void AnhXa() {
-        list = findViewById(R.id.recyclerView);
-        img_btn_back = (ImageView) findViewById(R.id.img_btn_back);
+        list = findViewById(R.id.recyclerView); // List view
+        img_btn_back = (ImageView) findViewById(R.id.img_btn_back); // Back <
+        textView8 = findViewById(R.id.textView8); // DateTime
     }
 
     @Override
     public void onClick(View v) {
-//        switch (v.getId()) {
-//            case R.id.img_btn_back:
-//                Intent intent = new Intent(this, TeacherActivity.class);
-//                intent.putExtra("ID_TEACHER", id_teacher);
-//                startActivity(intent);
-//                finish();
-//                break;
-//        }
-
-        if (v.getId() == R.id.img_btn_back) {
+        if (v.getId() == R.id.img_btn_back) { // Back <
             Intent intent = new Intent(this, TeacherActivity.class);
             intent.putExtra("ID_TEACHER", id_teacher);
             startActivity(intent);
@@ -105,6 +108,6 @@ public class TeacherScheduleActivity extends AppCompatActivity implements ITSche
     @Override
     public void onListScheduleStudentResult(ArrayList<ScheduleModel> List_Schedule) {
         scheduleStudentAdapterActivity = new ScheduleStudentAdapterActivity(this,List_Schedule);
-        list.setAdapter(scheduleStudentAdapterActivity);
+        list.setAdapter(scheduleStudentAdapterActivity); /// --> Turn to ScheduleStudentAdapterActivity (Line 51)
     }
 }

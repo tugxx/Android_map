@@ -27,15 +27,17 @@ public class AbsentTeacherPresenter implements IAbsentTeacherPresenter {
     @Override
     public void doLoadListClass(String id, IAbsentTeacherView context) {
         iClass = new ClassModel(id, context);
-        iClass.getDataClassForIDTeacher(id, context);
+        iClass.getDataClassForIDTeacher(id, context); // --> Turn to ClassModel (Line 269)
     }
+
     public AbsentTeacherPresenter(IAbsentTimeTeacherView iAbsentTimeTeacherView) {
         this.iAbsentTimeTeacherView = iAbsentTimeTeacherView;
         handler = new Handler(Looper.getMainLooper());
     }
+
     @Override
     public void doLoadListStudent(String id, String date_time, IAbsentTimeTeacherView context) {
         iAbsentTeacherModel = new AbsentTeacherModel(id,date_time,context);
-        iAbsentTeacherModel.GetAbsentForClasstTeacherChoose(context);
+        iAbsentTeacherModel.GetAbsentForClasstTeacherChoose(context); /// --> Turn to AbsentTeacherModel (Line 60)
     }
 }

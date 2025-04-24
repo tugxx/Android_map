@@ -37,33 +37,32 @@ public class AbsentTimeTeacherActivity extends AppCompatActivity implements IAbs
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+//        requestWindowFeature(Window.FEATURE_NO_TITLE);
+//        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_absent_teacher_list);
         mapping();
+
         txt_choose_time_teacher.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Choosetime();
-            }
+            } // Turn to line 73
         });
+
         Intent intent = getIntent();
         teacher_id = intent.getStringExtra("ID_TEACHER");
-        img_btn_back.setOnClickListener(this);
-        img_btn_home.setOnClickListener(this);
+
+        img_btn_back.setOnClickListener(this); // Back <
+        img_btn_home.setOnClickListener(this); // Home
     }
+
     public void mapping() {
-        txt_choose_time_teacher = (TextView) findViewById(R.id.txt_choose_time_teacher);
-        list_absent_for_teacher = (ListView) findViewById(R.id.list_absent_for_teacher);
-        img_btn_back = (ImageView) findViewById(R.id.img_btn_back);
-        img_btn_home = (ImageView) findViewById(R.id.img_btn_home);
+        txt_choose_time_teacher = (TextView) findViewById(R.id.txt_choose_time_teacher); // Choose Date
+        list_absent_for_teacher = (ListView) findViewById(R.id.list_absent_for_teacher); // List view
+        img_btn_back = (ImageView) findViewById(R.id.img_btn_back); /// Back <
+        img_btn_home = (ImageView) findViewById(R.id.img_btn_home); /// Home
     }
-    public void LoadtimeAbsentforteacher() {
-        Intent intent = getIntent();
-        Id_class_absent = intent.getStringExtra("ID_CLASS");
-        list_absent_for_teacher.setAdapter(null);
-        absentTeacherPresenter.doLoadListStudent(Id_class_absent, txt_choose_time_teacher.getText().toString(),this);
-    }
+
     public void Choosetime() {
         final Calendar calendar = Calendar.getInstance();
         int day = calendar.get(Calendar.DATE);
@@ -76,41 +75,35 @@ public class AbsentTimeTeacherActivity extends AppCompatActivity implements IAbs
                 calendar.set(year, month, dayOfMonth);
                 SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
                 txt_choose_time_teacher.setText(simpleDateFormat.format(calendar.getTime()));
-                LoadtimeAbsentforteacher();
+                LoadtimeAbsentforteacher(); // Turn to line 84
             }
         }, year, month, day);
         datePickerDialog.show();
     }
 
+    public void LoadtimeAbsentforteacher() {
+        Intent intent = getIntent();
+        Id_class_absent = intent.getStringExtra("ID_CLASS");
+        list_absent_for_teacher.setAdapter(null);
+        /// --> Turn to AbsentTeacherPresenter (Line 39)
+        absentTeacherPresenter.doLoadListStudent(Id_class_absent, txt_choose_time_teacher.getText().toString(),this);
+    }
+
     @Override
     public void onLisTimeTeacherResult(ArrayList<AbsentTeacherModel> list_absent) {
         absentAdappterForTeacher = new AbsentAdappterForTeacher(list_absent);
-        list_absent_for_teacher.setAdapter(absentAdappterForTeacher);
+        list_absent_for_teacher.setAdapter(absentAdappterForTeacher); /// --> Turn to AbsentAdappterForTeacher (Line 42)
     }
+
     @Override
     public void onClick(View v) {
-//        switch (v.getId()){
-//            case R.id.img_btn_back:
-//                Intent teacher1 = new Intent(this , AbsentTeacherActivity.class);
-//                teacher1.putExtra("ID_TEACHER", teacher_id);  // Truyền ID_TEACHER
-//                startActivity(teacher1);
-//                finish();
-//                break;
-//            case R.id.img_btn_home:
-//                Intent teacher = new Intent(this , TeacherActivity.class);
-//                teacher.putExtra("ID_TEACHER", teacher_id);  // Truyền ID_TEACHER
-//                startActivity(teacher);
-//                finish();
-//                break;
-//        }
-
-        if (v.getId() == R.id.img_btn_back) {
-            Intent teacher1 = new Intent(this, AbsentTeacherActivity.class);
+        if (v.getId() == R.id.img_btn_back) { // Back <
+            Intent teacher1 = new Intent(this, AbsentTeacherActivity.class); // --> Turn to AbsentTeacherActivity
             teacher1.putExtra("ID_TEACHER", teacher_id);  // Passing teacher ID
             startActivity(teacher1);
             finish();
-        } else if (v.getId() == R.id.img_btn_home) {
-            Intent teacher = new Intent(this, TeacherActivity.class);
+        } else if (v.getId() == R.id.img_btn_home) { /// Home
+            Intent teacher = new Intent(this, TeacherActivity.class); /// --> Turn to TeacherActivity
             teacher.putExtra("ID_TEACHER", teacher_id);  // Passing teacher ID
             startActivity(teacher);
             finish();

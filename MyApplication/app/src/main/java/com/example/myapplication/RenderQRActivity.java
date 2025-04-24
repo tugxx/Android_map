@@ -31,13 +31,13 @@ public class RenderQRActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+//        requestWindowFeature(Window.FEATURE_NO_TITLE);
+//        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.acctivity_qrcode_attendence_teacher);
         Intent intent = getIntent();
         Id_class_render  = intent.getStringExtra("ID_CLASS");
-        imgQRCode = (ImageView) findViewById(R.id.imgQRcode);
-        CreateQR();
+        imgQRCode = (ImageView) findViewById(R.id.imgQRcode); // Image
+        CreateQR(); // Turn to line 43
     }
 
     public void CreateQR() {

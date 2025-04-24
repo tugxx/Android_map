@@ -98,6 +98,13 @@ public class ClassModel extends AppCompatActivity implements IClassModel {
         this.class_idteacher = id;
         this.iPresentTeacherView = context;
     }
+
+    public ClassModel(String Class_id, String Class_name,int class_totalstudent) {
+        this.class_id = Class_id;
+        this.class_name = Class_name;
+        this.class_totalstudent = class_totalstudent;
+    }
+
     @Override
     public String getClass_id() {
         return this.class_id;
@@ -144,12 +151,12 @@ public class ClassModel extends AppCompatActivity implements IClassModel {
                             dbclass_id = object.getString("class_id").trim();
                             dbclass_name = object.getString("class_name").trim();
                             dbclass_idteacher = object.getString("teacher_id").trim();
-                            dbclass_totalstudent = object.getInt("totalstudent");
+                            dbclass_totalstudent = object.getInt("total_student");
                             ClassModel class_data = new ClassModel(dbclass_id, dbclass_name, dbclass_idteacher, dbclass_totalstudent);
                             ListClass.add(class_data);
                         }
-//                        System.out.println("ClassModel");
-                        iAttendenceTeacherView.onListClassResult(ListClass);
+//                        System.out.println("ClassModel + getDataClassForIDTeacher");
+                        iAttendenceTeacherView.onListClassResult(ListClass); // --> Turn to AttendenceTeacherActivity (Line 70)
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -237,10 +244,11 @@ public class ClassModel extends AppCompatActivity implements IClassModel {
                             dbclass_name = object.getString("class_name").trim();
                             dbclass_idteacher = object.getString("teacher_id").trim();
                             dbclass_classtime = object.getString("class_time").trim();
-                            dbclass_totalstudent = object.getInt("totalstudent");
+                            dbclass_totalstudent = object.getInt("total_student");
                             ClassModel class_data = new ClassModel(dbclass_id, dbclass_name, dbclass_idteacher, dbclass_classtime ,dbclass_totalstudent);
                             ListClass.add(class_data);
                         }
+                        /// --> Turn to PresentTeacherActivity (Line 67)
                         iPresentTeacherView.onListClassResult(ListClass); /// chưa trả giá trị ra
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -288,6 +296,7 @@ public class ClassModel extends AppCompatActivity implements IClassModel {
                             ClassModel class_data = new ClassModel(dbclass_id, dbclass_name, dbclass_idteacher, dbclass_classtime ,dbclass_totalstudent);
                             ListClass.add(class_data);
                         }
+                        /// --> Turn to AbsentTeacherActivity (Line 67)
                         iAbsentTeacherView.onListClassResult(ListClass); /// Trả về Absent
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -328,10 +337,12 @@ public class ClassModel extends AppCompatActivity implements IClassModel {
                             JSONObject object = jsonArray.getJSONObject(i);
                             dbclass_id = object.getString("id").trim();
                             dbclass_name = object.getString("name").trim();
-                            ClassModel class_data = new ClassModel(dbclass_id, dbclass_name);
+                            dbclass_totalstudent = object.getInt("total_student");
+//                            System.out.println("getDataClassForIDTeacher2"+dbclass_totalstudent);
+                            ClassModel class_data = new ClassModel(dbclass_id, dbclass_name, dbclass_totalstudent);
                             ListClass.add(class_data);
                         }
-                        itClassListView.onListClassTeacherResult(ListClass);
+                        itClassListView.onListClassTeacherResult(ListClass); /// --> Turn to TClassListActivity (Line 86)
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }

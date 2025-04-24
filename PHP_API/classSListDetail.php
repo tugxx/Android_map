@@ -2,7 +2,6 @@
 	require "dbCon.php";
 
 	$class_id = $_POST['class_id'];
-
    $query = "Select *
              from student s
              where s.student_id in (Select student_id
@@ -17,10 +16,9 @@
 
     //3. Them phan tu vao mang
    while($row = mysqli_fetch_assoc($data)){
-      $student_name = $row['student_name'];
-      array_push($mangSV, new Student($row['student_id'], $student_name,$row['student_birth'],$row['student_gender'],$row['student_mail'],$row['student_phone'],$row['student_image'],$row['status']));
+      // error_log($row['student_name']);
+      array_push($mangSV, new Student($row['student_id'],$row['student_name'],$row['student_birth'],$row['student_gender'],$row['student_mail'],$row['student_phone'],$row['student_image'],$row['status']));
    }
 
-   $json_output = json_encode($mangSV);
-   echo $json_output;
+   echo json_encode($mangSV);
 ?>

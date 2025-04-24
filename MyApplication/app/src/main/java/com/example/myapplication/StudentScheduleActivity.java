@@ -43,7 +43,7 @@ public class StudentScheduleActivity extends AppCompatActivity implements ISched
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_schedule_student);
         AnhXa(); // Turn to line 79
-        LoadScheduleForStudent(); // Turn to line 72
+        LoadScheduleForStudent(); // Turn to line 71
 
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() { // Done
             @Override

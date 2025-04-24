@@ -35,15 +35,13 @@ public class TclassListDetailActivity extends AppCompatActivity implements ITCla
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_studentlist);
-        AnhXa();
+        AnhXa(); /// Turn to line 69
+        LoadClassForStudent(); /// Turn to line 75
 
-        LoadClassForStudent();
+        img_btn_home.setOnClickListener(this); // Home
+        img_btn_back.setOnClickListener(this); // Back
 
-        //return Home
-        img_btn_home.setOnClickListener(this);
-        img_btn_back.setOnClickListener(this);
         //tìm kiếm
-
 
         // Funcion on Click list view
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -51,7 +49,7 @@ public class TclassListDetailActivity extends AppCompatActivity implements ITCla
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 StudentModel student_model = (StudentModel) studentAdapter.getItem(position);
                 //Do in Click Class
-                Intent intent = new Intent(view.getContext() , TDeTailStudentActivity.class);
+                Intent intent = new Intent(view.getContext() , TDeTailStudentActivity.class); /// --> Turn to TDeTailStudentActivity
                 intent.putExtra("STUDENT_ID", student_model.getStudent_id());
                 intent.putExtra("STUDENT_NAME", student_model.getStudent_name());
                 intent.putExtra("STUDENT_EMAIL", student_model.getStudent_mail());
@@ -68,55 +66,38 @@ public class TclassListDetailActivity extends AppCompatActivity implements ITCla
 
     }
 
+    public void AnhXa() {
+        list = findViewById(R.id.recyclerviewStudent); // List view
+        img_btn_home = (ImageView) findViewById(R.id.img_btn_home); // Home
+        img_btn_back = (ImageView) findViewById(R.id.img_btn_back); // Back <
+    }
+
     public void LoadClassForStudent() {
         Intent intent = getIntent();
         class_id =intent.getStringExtra("ID_CLASS");
         id_teacher =intent.getStringExtra("ID_TEACHER");
         class_name =intent.getStringExtra("CLASS_NAME");
-        itClassListDetailPresenter.doLoadListStudent(class_id, this);
-
-    }
-
-    public void AnhXa() {
-        list = findViewById(R.id.recyclerviewStudent);
-        img_btn_home = (ImageView) findViewById(R.id.img_btn_home);
-        img_btn_back = (ImageView) findViewById(R.id.img_btn_back);
+        itClassListDetailPresenter.doLoadListStudent(class_id, this); /// --> Turn to TClassListDetailPresenter (Line 22)
     }
 
     @Override
     public void onClick(View v) {
-//        switch (v.getId()) {
-//            case R.id.img_btn_home:
-//                Intent intent1 = new Intent(this, TeacherActivity.class);
-//                intent1.putExtra("ID_TEACHER", id_teacher);
-//                startActivity(intent1);
-//                finish();
-//                break;
-//            case R.id.img_btn_back:
-//                Intent intent = new Intent(this, TClassListActivity.class);
-//                intent.putExtra("ID_TEACHER", id_teacher);
-//                startActivity(intent);
-//                finish();
-//                break;
-//        }
-
-        if (v.getId() == R.id.img_btn_home) {
+        if (v.getId() == R.id.img_btn_home) { // Home
             Intent intent1 = new Intent(this, TeacherActivity.class);
             intent1.putExtra("ID_TEACHER", id_teacher);
             startActivity(intent1);
             finish();
-        } else if (v.getId() == R.id.img_btn_back) {
+        } else if (v.getId() == R.id.img_btn_back) { // Back <
             Intent intent = new Intent(this, TClassListActivity.class);
             intent.putExtra("ID_TEACHER", id_teacher);
             startActivity(intent);
             finish();
         }
-
     }
 
     @Override
     public void onListClassStudentResult(ArrayList<StudentModel> List_Student) {
         studentAdapter = new StudentAdapter(this,List_Student);
-        list.setAdapter(studentAdapter);
+        list.setAdapter(studentAdapter); /// -> Turn to StudentAdapter (Line 52)
     }
 }

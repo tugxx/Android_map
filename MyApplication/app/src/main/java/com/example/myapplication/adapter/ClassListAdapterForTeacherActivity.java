@@ -46,11 +46,14 @@ public class ClassListAdapterForTeacherActivity extends BaseAdapter {
         View viewClass;
         if (convertView == null) {
             viewClass = View.inflate(parent.getContext(), R.layout.activity_class_view_custom_teacher, null);
-        } else viewClass = convertView;
+        } else {
+            viewClass = convertView;
+        }
+
         ClassModel class_list = (ClassModel) getItem(position);
         ((TextView) viewClass.findViewById(R.id.text_name_class)).setText(String.format(class_list.getClass_name()));
         ((TextView) viewClass.findViewById(R.id.text_id_class)).setText(String.format(class_list.getClass_id()));
-        ((TextView) viewClass.findViewById(R.id.text_totalstudentinclass)).setText(String.format(String.valueOf(class_list.getClass_Totalstudent())));
+        ((TextView) viewClass.findViewById(R.id.text_totalstudentinclass)).setText("Số sinh viên: "+String.format(String.valueOf(class_list.getClass_Totalstudent())));
         return viewClass;
     }
 }

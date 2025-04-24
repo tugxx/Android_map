@@ -9,12 +9,14 @@
         android:name="android.hardware.telephony"
         android:required="false" />
 
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
 <!--    <uses-permission android:name="android.permission.SEND_SMS" />-->
 <!--    <uses-permission android:name="android.permission.RECEIVE_SMS" />-->
 <!--    <uses-permission android:name="android.permission.READ_SMS" />-->
 
     <application
+        android:usesCleartextTraffic="true"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -48,8 +50,20 @@
         <activity android:name=".DetailStudentActivity" />
         <activity android:name=".StudentListActivity" />
         <activity android:name=".AboutActivity" />
-
         <activity android:name=".TeacherActivity" />
+        <activity android:name=".AttendenceTeacherActivity" />
+        <activity android:name=".RenderQRActivity" />
+        <activity android:name=".PresentTeacherActivity" />
+        <activity android:name=".PresentTimeTeacherActivity" />
+        <activity android:name=".AbsentTeacherActivity" />
+        <activity android:name=".AbsentTimeTeacherActivity" />
+        <activity android:name=".TClassListActivity" />
+        <activity android:name=".TclassListDetailActivity" />
+        <activity android:name=".TDeTailStudentActivity" />
+        <activity android:name=".TeacherScheduleActivity" />
+        <activity android:name=".ProfileTeacherActivity" />
+        <activity android:name=".ChangePasswordTeacherActivity" />
+
         <activity android:name=".AdminActivity" />
     </application>
 </manifest>

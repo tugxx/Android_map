@@ -84,6 +84,7 @@
         android:layout_height="29dp"
         android:text="Choose Date"
         android:textAlignment="center"
+        android:gravity="center"
         android:textSize="15dp"
         app:layout_constraintBottom_toTopOf="@+id/list_present_time_for_teacher"
         app:layout_constraintEnd_toStartOf="@+id/button3"

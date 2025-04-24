@@ -23,7 +23,7 @@ public class ChangePasswordTeacherPresenter extends AppCompatActivity implements
     @Override
     public void checkChangePass(String id_teacher, String old_password, String new_password, IChangePasswordTeacherView iChangePasswordTeacherView) {
         iChangePasswordTeacherModel = new ChangePasswordTeacherModel(id_teacher, old_password, new_password, iChangePasswordTeacherView);
+        /// --> Turn to ChangePasswordTeacherModel (Line 39)
         iChangePasswordTeacherModel.Changepasswordteacher(id_teacher, old_password, new_password, iChangePasswordTeacherView);
     }
-
 }

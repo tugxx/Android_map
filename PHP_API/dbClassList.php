@@ -21,7 +21,7 @@
     }
 
     //4.Chuyen dinh dang cua mang -->Json
-    if(!empty($mangSV)) echo json_encode($mangSV);
+    if (!empty($mangSV)) echo json_encode($mangSV);
     else echo ("Error");
 //
 ?>

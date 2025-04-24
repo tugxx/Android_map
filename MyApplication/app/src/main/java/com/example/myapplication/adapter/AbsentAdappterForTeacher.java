@@ -46,7 +46,10 @@ public class AbsentAdappterForTeacher extends BaseAdapter {
         View viewClass;
         if (convertView == null) {
             viewClass = View.inflate(parent.getContext(), R.layout.layoutcustom_absentteacher, null);
-        } else viewClass = convertView;
+        } else {
+            viewClass = convertView;
+        }
+
         AbsentTeacherModel Absent_list = (AbsentTeacherModel) getItem(position);
         ((TextView) viewClass.findViewById(R.id.text_name_student)).setText(String.format(Absent_list.getStudent_name()));
         ((TextView) viewClass.findViewById(R.id.text_id_studentt)).setText(String.format(Absent_list.getStudent_id()));

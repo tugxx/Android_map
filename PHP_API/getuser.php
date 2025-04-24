@@ -1,14 +1,16 @@
 <?php
     require "Constants.php";
-
+    // error_log("username ".$_POST['username']);
+    
     // Create connection
     $conn = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME);
-    // error_log("DB_HOST: " . DB_HOST . ", DB_USER: " . DB_USER . ", DB_PASSWORD: " . DB_PASSWORD . ", DB_NAME: " . DB_NAME);
 
     // Check connection
     if ($conn->connect_error) {
+        error_log("??????");
         die("Connection failed: " . $conn->connect_error);
     }
+
 
     // Get username and password from POST request
     $username = isset($_POST['username']) ? $_POST['username'] : '';
@@ -32,7 +34,6 @@
         $row = $result->fetch_assoc();
         $db_username = $row['username'];
         $db_password = $row['password'];
-
 
         // Verify the password (you might want to use password_hash/password_verify in a real application)
         if ($password == $db_password) {  //  <-- IMPORTANT: In a real app, use password_verify() here

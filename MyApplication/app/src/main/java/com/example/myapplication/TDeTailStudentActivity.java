@@ -15,12 +15,14 @@ public class TDeTailStudentActivity extends AppCompatActivity implements  View.O
     private ImageView img_btn_back,img_btn_home;
     String student_id,student_name ,student_mail, student_phone,student_dob,student_class,teacher_id,class_id,class_name ;
     @Override
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+//        requestWindowFeature(Window.FEATURE_NO_TITLE);
+//        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_studentdetail);
-        AnhXa();
+        AnhXa(); // Line 48
+
         //lay thong tin
         Intent intent = getIntent();
         class_id =intent.getStringExtra("ID_CLASS");
@@ -56,23 +58,6 @@ public class TDeTailStudentActivity extends AppCompatActivity implements  View.O
 
     @Override
     public void onClick(View v) {
-//        switch (v.getId()) {
-//            case R.id.img_btn_home:
-//                Intent intent = new Intent(this, TeacherActivity.class);
-//                intent.putExtra("ID_TEACHER", teacher_id);
-//                startActivity(intent);
-//                finish();
-//                break;
-//            case R.id.img_btn_back:
-//                Intent intent1 = new Intent(this, TclassListDetailActivity.class);
-//                intent1.putExtra("ID_TEACHER", teacher_id);
-//                intent1.putExtra("ID_CLASS", class_id);
-//                intent1.putExtra("CLASS_NAME", class_name);
-//                startActivity(intent1);
-//                finish();
-//                break;
-//        }
-
         if (v.getId() == R.id.img_btn_home) {
             Intent intent = new Intent(this, TeacherActivity.class);
             intent.putExtra("ID_TEACHER", teacher_id);

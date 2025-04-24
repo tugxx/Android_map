@@ -37,7 +37,7 @@ public class SclassListDetailActivity extends AppCompatActivity implements ISCla
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_studentlist);
         AnhXa();
-        LoadClassForStudent(); // Turn to line 76
+        LoadClassForStudent(); // Turn to line 75
 
         //return Home
         img_btn_home.setOnClickListener(this);

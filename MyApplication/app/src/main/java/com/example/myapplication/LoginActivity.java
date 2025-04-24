@@ -43,7 +43,7 @@ public class LoginActivity extends AppCompatActivity implements ILoginView, View
         mapping(); // Line 59
 
         // Set text (rarely use)
-        edt_user.setText(sharedPreferences.getString("email","student"));
+        edt_user.setText(sharedPreferences.getString("email","teacher"));
         edt_password.setText(sharedPreferences.getString("password","1234"));
         cb_remeberme.setChecked(sharedPreferences.getBoolean("checked",false));
 
@@ -105,11 +105,11 @@ public class LoginActivity extends AppCompatActivity implements ILoginView, View
         if (role.equals("1")) { // Admin
             handlePreferences();
             // --> Turn to AdminActivity
-            System.out.println("LoginActivity + onLoginResult + Admin");
+//            System.out.println("LoginActivity + onLoginResult + Admin");
             startActivity(new Intent(LoginActivity.this, AdminActivity.class));
             finish();
         } else if (role.equals("2")) { // Teacher
-            System.out.println("LoginActivity + onLoginResult + Teacher");
+//            System.out.println("LoginActivity + onLoginResult + Teacher");
             handlePreferences();
             // --> Turn to TeacherActivity
             Intent teacher = new Intent(this, TeacherActivity.class);

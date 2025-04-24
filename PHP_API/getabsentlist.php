@@ -1,5 +1,6 @@
 <?php
 	require "dbCon.php";
+	
 	if(isset($_POST['class_id']) && isset($_POST['date_time'])) {	
     	$class_id = $_POST['class_id'];
     	$date_time = $_POST['date_time'];
@@ -13,6 +14,7 @@
         	$array_student [] = $student;
     	}
 
+
     	//Get data comepare
     	$query = "SELECT a.student_id, s.student_name, a.attendance_time FROM attendance a INNER JOIN student s on a.student_id = s.student_id WHERE class_id = '$class_id' and attendance_time LIKE '$date_time%'";
 		$data = mysqli_query($connect, $query);
@@ -22,8 +24,9 @@
 			$absent = new dbtime_absent_teacher($row['student_id'],$row['student_name'],$row['attendance_time']);
 			$listabsent [] = $absent;
 		}
-		$cout_student =count($array_student);
+		$count_student =count($array_student);
     	
+
     	//Compare
     	for ($i = 0; $i < count($array_student); $i++){
         	for ($j = 0; $j < count($listabsent); $j++){
@@ -36,8 +39,9 @@
     		$array_student->offsetUnset($f);
     	}
 	
+	
 		//echo data API
-		if(count($listabsent) != $cout_student ){
+		if(count($listabsent) != $count_student ){
 			foreach( $array_student as $key => $value ){
 				$obj_json[] = $value;
 			}
